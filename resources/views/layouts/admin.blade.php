@@ -192,7 +192,7 @@
                                 </li>
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="shield"></i><span>Patrol</span></a>
                                     <ul class="sidebar-submenu">
-                                        <li><a href="">Schedule Route</a></li>
+                                        <li><a href="">Schedule</a></li>
                                         <li><a href="">Notice Boards</a></li>
                                     </ul>
                                 </li>
