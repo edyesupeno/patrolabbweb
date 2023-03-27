@@ -27,8 +27,12 @@ class AuthController extends Controller
             $credentials = $validator->validated();
             if (Auth::attempt($credentials)) {
                 $user = User::firstWhere('email',$credentials['email']);
-                $user['token'] = $user->createToken('auth_token')->plainTextToken;
-                return ApiHelper::response('true','login berhasil',$user,401);
+                $guard = $user->data_guard;
+                if(!$guard){
+                    return ApiHelper::response('false','Info login tidak valid',$credentials,401);
+                }
+                $guard['token'] = $user->createToken('auth_token')->plainTextToken;
+                return ApiHelper::response('true','login berhasil',$guard,200);
             }
 
             return ApiHelper::response('false','Info login tidak valid',$credentials,401);

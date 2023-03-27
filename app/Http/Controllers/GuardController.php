@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Throwable;
 use App\Models\Guard;
+use App\Helper\ApiHelper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\Facades\DataTables;
 
 class GuardController extends Controller
@@ -104,5 +107,33 @@ class GuardController extends Controller
                 return $data;
             })
             ->toJson();
+    }
+
+    //API METHOD
+
+    public function index_api()
+    {
+        try {
+            $data = Guard::with(['wilayah', 'area'])->get();
+            return ApiHelper::response('true', 'berhasil mendapatkan data', $data, 200);
+        } catch (Throwable $th) {
+            Log::debug('app\Http\Controllers\GuardController.php index_api ' . $th->getMessage());
+            return ApiHelper::response('false', 'terjadi masalah', [$th->getMessage()], 500);
+        }
+    }
+    public function show_api($id)
+    {
+        try {
+            $data = Guard::find($id);
+            if (!$data) {
+                return ApiHelper::response('false', 'gagal mendapatkan data', [$id], 404);
+            }
+            $data = $data->with(['wilayah', 'area'])->get();
+            return ApiHelper::response('true', 'berhasil mendapatkan data', $data, 200);
+        } catch (Throwable $th) {
+            Log::debug('app\Http\Controllers\GuardController.php show_api ' . $th->getMessage());
+            return ApiHelper::response('false', 'terjadi masalah', [$th->getMessage()], 500);
+        }
+
     }
 }

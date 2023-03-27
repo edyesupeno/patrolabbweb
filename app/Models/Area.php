@@ -13,4 +13,7 @@ class Area extends Model
     public function project(){
         return $this->belongsTo(ProjectModel::class,'id_project');
     }
+    public function data_guards(){
+        return $this->hasMany(Area::class,'id_area');
+    }
 }
