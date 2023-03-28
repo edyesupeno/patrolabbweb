@@ -24,7 +24,9 @@ return new class extends Migration
             $table->string('alamat');
             $table->enum('jabatan',['Admin','Arco','Security Officer']);
             $table->foreignId('id_wilayah');
+            $table->foreignId('id_project');
             $table->foreignId('id_area');
+            $table->foreignId('id_shift');
             $table->timestamps();
         });
     }

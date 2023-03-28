@@ -19,4 +19,13 @@ class Guard extends Model
     public function area(){
         return $this->belongsTo(Area::class,'id_area');
     }
+    public function project()
+    {
+        return $this->belongsTo(ProjectModel::class, 'id_project');
+    }
+
+    public static function relation() 
+    {
+        return ['wilayah', 'area', 'project'];
+    }
 }

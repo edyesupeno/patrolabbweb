@@ -114,7 +114,7 @@ class GuardController extends Controller
     public function index_api()
     {
         try {
-            $data = Guard::with(['wilayah', 'area'])->get();
+            $data = Guard::with(['wilayah', 'area','project'])->get();
             return ApiHelper::response('true', 'berhasil mendapatkan data', $data, 200);
         } catch (Throwable $th) {
             Log::debug('app\Http\Controllers\GuardController.php index_api ' . $th->getMessage());
@@ -128,7 +128,7 @@ class GuardController extends Controller
             if (!$data) {
                 return ApiHelper::response('false', 'gagal mendapatkan data', [$id], 404);
             }
-            $data = $data->with(['wilayah', 'area'])->get();
+            $data = $data->with(['wilayah', 'area', 'project'])->get();
             return ApiHelper::response('true', 'berhasil mendapatkan data', $data, 200);
         } catch (Throwable $th) {
             Log::debug('app\Http\Controllers\GuardController.php show_api ' . $th->getMessage());

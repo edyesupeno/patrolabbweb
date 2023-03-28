@@ -20,4 +20,10 @@ class ProjectModel extends Model
     {
         return $this->hasMany(Area::class, 'id_project');
     }
+
+    public function data_guards()
+    {
+        return $this->hasMany(Guard::class, 'id_project');
+    }
+    
 }

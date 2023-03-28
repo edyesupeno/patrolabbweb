@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Models\Guard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -45,6 +46,9 @@ class AuthController extends Controller
 
     public function me(Request $request)
     {
-        return $request->user();
+        //return $request->user()->data_guard;
+
+        $guard = Guard::with(Guard::relation())->get();
+        return $guard;
     }
 }
