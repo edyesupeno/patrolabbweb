@@ -17,7 +17,7 @@ use App\Http\Controllers\Api\AuthController;
 */
 Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('me', function (Request $request) { return $request->user(); });
+    Route::get('me',[AuthController::class,'me']);
     Route::post('guard',[GuardController::class,'index_api']);
     Route::post('guard/{id}',[GuardController::class,'show_api']);
 });
