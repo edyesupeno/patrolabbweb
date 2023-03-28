@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\ApiDocsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AsetController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GuardController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WilayahController;
 use App\Http\Controllers\HakAksesController;
@@ -26,17 +28,17 @@ use App\Http\Controllers\ProjectModelController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return redirect('/dashboard'); })->name('home');
+Route::get('api-documentation',[ApiDocsController::class,'index'])->name('api-documentation');
 
-Route::get('/dashboard', function(){
-if (auth()->user()->hasRole('super-admin')) {
-    return redirect()->route('admin.dashboard');
-}
-})->middleware(['auth','verified']);
+Route::get('/dashboard', function () {
+    if (auth()->user()->hasRole('super-admin')) {
+        return redirect()->route('admin.dashboard');
+    }
+})->middleware(['auth', 'verified']);
 //Route::get('/dashboard',[SuperAdminController::class,'dashboard'])->middleware(['auth', 'verified','role:super-admin'])->name('dashboard');
 //admin route
-Route::group(['prefix'=>'super-admin', 'middleware'=> ['auth','verified','role:super-admin']], function(){
+Route::group(['prefix' => 'super-admin', 'middleware' => ['auth', 'verified', 'role:super-admin']], function () {
     Route::get('/dashboard', [SuperAdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::resources([
         'user' => UserController::class,
@@ -46,17 +48,17 @@ Route::group(['prefix'=>'super-admin', 'middleware'=> ['auth','verified','role:s
         'guard' => GuardController::class,
         'ai-master' => AiMasterDataController::class,
         'aset' => AsetController::class,
-        'hak-akses'=>HakAksesController::class,
+        'hak-akses' => HakAksesController::class,
         'project-model' => ProjectModelController::class,
         'aset-location' => AsetLocationController::class
 
     ]);
 
     //Route
-    Route::get('/hak-akses/project/{id}',[HakAksesController::class, 'get_project'])->name('hak-akses-get-project');
+    Route::get('/hak-akses/project/{id}', [HakAksesController::class, 'get_project'])->name('hak-akses-get-project');
 
     //Route Data Table
-    Route::get('wilayah-datatable', [WilayahController::class,'datatable'])->name('wilayah.datatable');
+    Route::get('wilayah-datatable', [WilayahController::class, 'datatable'])->name('wilayah.datatable');
     Route::get('area-datatable', [AreaController::class, 'datatable'])->name('area.datatable');
     Route::get('check-point-datatable', [CheckPointController::class, 'datatable'])->name('check-point.datatable');
     Route::get('aset-location-datatable', [AsetLocationController::class, 'datatable'])->name('aset-location.datatable');
@@ -76,4 +78,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

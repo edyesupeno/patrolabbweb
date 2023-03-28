@@ -15,9 +15,9 @@ use App\Http\Controllers\Api\AuthController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('login', [AuthController::class, 'login']);
+Route::post('login', [AuthController::class, 'login'])->name('login.api');
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('me',[AuthController::class,'me']);
-    Route::post('guard',[GuardController::class,'index_api']);
-    Route::post('guard/{id}',[GuardController::class,'show_api']);
+    Route::get('me',[AuthController::class,'me'])->name('me.api');
+    Route::post('guard',[GuardController::class,'index_api'])->name('guard_index.api');
+    Route::post('guard/{id}',[GuardController::class,'show_api'])->name('guard_show.api');
 });
