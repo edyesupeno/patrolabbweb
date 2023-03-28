@@ -23,9 +23,4 @@ class Guard extends Model
     {
         return $this->belongsTo(ProjectModel::class, 'id_project');
     }
-
-    public static function relation() 
-    {
-        return ['wilayah', 'area', 'project'];
-    }
 }

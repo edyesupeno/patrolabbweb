@@ -18,6 +18,4 @@ use App\Http\Controllers\Api\AuthController;
 Route::post('login', [AuthController::class, 'login'])->name('login.api');
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('me',[AuthController::class,'me'])->name('me.api');
-    Route::post('guard',[GuardController::class,'index_api'])->name('guard_index.api');
-    Route::post('guard/{id}',[GuardController::class,'show_api'])->name('guard_show.api');
 });

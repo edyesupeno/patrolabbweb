@@ -29,7 +29,6 @@ use App\Http\Controllers\ProjectModelController;
 
 Route::get('/', function () {
     return redirect('/dashboard'); })->name('home');
-Route::get('api-documentation',[ApiDocsController::class,'index'])->name('api-documentation');
 
 Route::get('/dashboard', function () {
     if (auth()->user()->hasRole('super-admin')) {

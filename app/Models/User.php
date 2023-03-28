@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable,HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -43,7 +43,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function data_guard(){
-        return $this->belongsTo(Guard::class,'guard_id');
+    public function data_guard()
+    {
+        return $this->belongsTo(Guard::class, 'guard_id');
     }
+    protected $with = [
+        'data_guard',
+        'data_guard.wilayah',
+        'data_guard.area',
+        'data_guard.project'
+    ];
 }

@@ -46,9 +46,7 @@ class AuthController extends Controller
 
     public function me(Request $request)
     {
-        //return $request->user()->data_guard;
-
-        $guard = Guard::with(Guard::relation())->get();
-        return $guard;
+        $user_id = $request->user()->id;
+        return User::find($user_id)->data_guard;
     }
 }

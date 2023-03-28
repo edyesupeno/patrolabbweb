@@ -108,32 +108,4 @@ class GuardController extends Controller
             })
             ->toJson();
     }
-
-    //API METHOD
-
-    public function index_api()
-    {
-        try {
-            $data = Guard::with(['wilayah', 'area','project'])->get();
-            return ApiHelper::response('true', 'berhasil mendapatkan data', $data, 200);
-        } catch (Throwable $th) {
-            Log::debug('app\Http\Controllers\GuardController.php index_api ' . $th->getMessage());
-            return ApiHelper::response('false', 'terjadi masalah', [$th->getMessage()], 500);
-        }
-    }
-    public function show_api($id)
-    {
-        try {
-            $data = Guard::find($id);
-            if (!$data) {
-                return ApiHelper::response('false', 'gagal mendapatkan data', [$id], 404);
-            }
-            $data = $data->with(['wilayah', 'area', 'project'])->get();
-            return ApiHelper::response('true', 'berhasil mendapatkan data', $data, 200);
-        } catch (Throwable $th) {
-            Log::debug('app\Http\Controllers\GuardController.php show_api ' . $th->getMessage());
-            return ApiHelper::response('false', 'terjadi masalah', [$th->getMessage()], 500);
-        }
-
-    }
 }
