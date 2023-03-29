@@ -57,6 +57,7 @@ Route::group(['prefix' => 'super-admin', 'middleware' => ['auth', 'verified', 'r
     Route::get('/hak-akses/project/{id}', [HakAksesController::class, 'get_project'])->name('hak-akses-get-project');
 
     //Route Data Table
+    Route::get('user-datatable', [UserController::class, 'datatable'])->name('user.datatable');
     Route::get('wilayah-datatable', [WilayahController::class, 'datatable'])->name('wilayah.datatable');
     Route::get('area-datatable', [AreaController::class, 'datatable'])->name('area.datatable');
     Route::get('check-point-datatable', [CheckPointController::class, 'datatable'])->name('check-point.datatable');

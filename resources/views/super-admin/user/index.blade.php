@@ -32,7 +32,7 @@
                         <th>Akses Level</th>
                         <th>Created At</th>
                         <th>Status</th>
-                        <th>Aksi</th>
+                        <th style="width: 200px">Aksi</th>
                     </tr>
                 </thead>
             </table>
@@ -42,7 +42,7 @@
 <div id="actionbase" class="d-none">
     <div class="d-flex">
         <a class="btn btn-warning me-2">Edit</a>
-        <form method="post">
+        <form method="post" class="d-inline">
             @csrf
             @method('delete')
             <button onclick="hapus_data(event)" class="btn btn-danger me-2" type="button">Hapus</button>
@@ -55,22 +55,34 @@
     $('#mytable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('aset.datatable') }}",
+        ajax: "{{ route('user.datatable') }}",
         columns: [{
                 data: 'DT_RowIndex',
                 name: 'No'
             },
             {
-                data: 'kode',
-                name: 'kode'
+                data: 'name',
+                name: 'user'
             },
             {
-                data: 'nama',
-                name: 'nama'
+                data: 'no_badge',
+                name: 'username'
+            },
+            {
+                data: 'role',
+               render: function(data, type, row){
+                return '<span class="text-capitalize">'+row.role+'</span>'
+               }
+            },
+            {
+                data: 'created_at',
+                name: 'created at'
             },
             {
                 data: 'status',
-                name: 'status'
+                render: function(data, type, row){
+                    return '<span class="text-capitalize text-nowrap">'+row.status+'</span>'
+                }
             },
             {
                 name: "Action",
