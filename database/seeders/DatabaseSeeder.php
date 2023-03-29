@@ -2,12 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Permission;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\AreaSeeder;
+use Database\Seeders\RoleSeeder;
+use Database\Seeders\UserSeeder;
+use Database\Seeders\GuardSeeder;
+use Database\Seeders\ProjectSeeder;
+use Database\Seeders\WilayahSeeder;
+use Database\Seeders\PermissionSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,16 +21,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-         Role::create(['name' => 'super-admin']);
-         Role::create(['name' => 'user']);
-         $this->call(PermissionSeeder::class);
-        $user = User::create([
-            'name' => 'super-admin',
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('123456'),
-        ]);
-
-        $user->assignRole('super-admin');
+        $this->call(RoleSeeder::class);
+        //$this->call(PermissionSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(WilayahSeeder::class);
+        $this->call(ProjectSeeder::class);
+        $this->call(AreaSeeder::class);
+        $this->call(GuardSeeder::class);
+       
 
     }
 }
