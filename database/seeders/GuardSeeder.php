@@ -16,14 +16,14 @@ class GuardSeeder extends Seeder
     public function run()
     {
         Guard::create([
-            'no_badge' => 'GB001',
-            'nama' => 'John Doe',
+            'no_badge' => '123456',
+            'nama' => 'AGUS',
             'ttl' => '1990-01-01',
             'jenis_kelamin' => 'Laki-laki',
-            'email' => 'johndoe@example.com',
+            'email' => 'agus@gmail.com',
             'wa' => '08123456789',
             'alamat' => 'Jl. Raya',
-            'jabatan' => 'Admin',
+            'jabatan' => 'Security Officer',
             'id_wilayah' => 1,
             'id_project' => 1,
             'id_area' => 1,
