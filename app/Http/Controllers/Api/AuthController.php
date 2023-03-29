@@ -33,8 +33,8 @@ class AuthController extends Controller
                 if (!$guard) {
                     return ApiHelper::response('false', 'Info login tidak valid', $credentials, 401);
                 }
-                $guard['token'] = $user->createToken('auth_token')->plainTextToken;
-                return ApiHelper::response('true', 'login berhasil', $guard, 200);
+                $token['token'] = $user->createToken('auth_token')->plainTextToken;
+                return ApiHelper::response('true', 'login berhasil', $token, 200);
             }
 
             return ApiHelper::response('false', 'Info login tidak valid', $credentials, 401);
