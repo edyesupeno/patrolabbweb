@@ -25,6 +25,7 @@ class HakAksesController extends Controller
         $data['title'] = 'Tambah Hak Akses';
         $data['permission'] = [
             'Aset' => [
+                'Menu Aset' => "aset_menu",
                 'Melihat data Aset' => "aset_index",
                 'Membuat data Aset' => "aset_create",
                 'Mengedit data Aset' => "aset_edit",
@@ -32,6 +33,7 @@ class HakAksesController extends Controller
                 'Menghapus data Aset' => "aset_destroy",
             ],
             'Wilayah' => [
+                'Menu Wilayah' => "wilayah_menu",
                 'Melihat data Wilayah' => "wilayah_index",
                 'Membuat data Wilayah' => "wilayah_create",
                 'Mengedit data Wilayah' => "wilayah_edit",
@@ -45,6 +47,7 @@ class HakAksesController extends Controller
 
     public function store(Request $request)
     {
+        return dd($request->all());
         try {
             DB::beginTransaction();
             $validator = Validator::make($request->all(),[
