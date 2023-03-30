@@ -19,8 +19,10 @@ class Guard extends Model
     public function area(){
         return $this->belongsTo(Area::class,'id_area');
     }
-    public function project()
+    public function projects()
     {
-        return $this->belongsTo(ProjectModel::class, 'id_project');
+        return $this->belongsToMany(ProjectModel::class,'pivot_guard_projects','id_guard','id_project');
     }
+
+    protected $with = ['projects'];
 }

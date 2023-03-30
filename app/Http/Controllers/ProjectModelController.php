@@ -111,7 +111,7 @@ class ProjectModelController extends Controller
             ->addIndexColumn()
             ->escapeColumns('active')
             ->addColumn('nama_project', '{{$nama_project}}')
-            ->addColumn('wilayah', function (ProjectModel $project){
+            ->addColumn('wilayah', function (ProjectModel $project) {
                 return $project->data_wilayah->nama;
             })
             ->addColumn('action', function (ProjectModel $project) {
@@ -122,5 +122,35 @@ class ProjectModelController extends Controller
                 return $data;
             })
             ->toJson();
+    }
+
+    public function by_wilayah(Request $request,$id)
+    {
+        $old = [];
+        if($request->id_project){
+            $old = explode(',',$request->id_project);
+        }
+        $data = Wilayah::find($id)->projects;
+        if ($data->count() <= 0) {
+            return response()->json([
+                "status" => "false",
+                "messege" => "gagal mengambil data project",
+                "data" => []
+            ], 404);
+        }
+        $html = '';
+        foreach ($data as $item) {
+            $checked = in_array($item->id,$old) ? 'checked' : '';
+            $html .= '<label class="col">
+            <input class="form-check-input me-1" type="checkbox" value="'.$item->id.'"
+                name="id_project[]" '.$checked.'>
+            <span>'.$item->nama_project.'</span>
+        </label>';
+        }
+        return response()->json([
+            "status" => "true",
+            "messege" => "berhasil mengambil data project",
+            "data" => [$html]
+        ], 200);
     }
 }

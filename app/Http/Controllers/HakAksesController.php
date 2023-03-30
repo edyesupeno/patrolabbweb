@@ -121,20 +121,5 @@ class HakAksesController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
-
-    public function get_project($id){
-        $data = Wilayah::find($id)->projects;
-        if($data->count()<=0){
-            return response()->json([
-                "status" => "false",
-                "messege" => "gagal mengambil data project",
-                "data" => []
-            ],404);
-        }
-        return response()->json([
-            "status" => "true",
-            "messege" => "berhasil mengambil data project",
-            "data" => $data
-        ],200);
-    }
+   
 }
