@@ -83,6 +83,7 @@ $section = 'wilayah';
             }
         ]
     });
+    active_menu("#data_master", "#wilayah")
 </script>
 <div class="d-flex">
     <a class="btn btn-warning me-2">Edit</a>

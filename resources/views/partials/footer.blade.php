@@ -62,6 +62,11 @@
             $('#myselect'+index).select2();
 
         }
+        function active_menu(base, item) {
+            let menu = $(base)
+            menu.find(item).addClass('active')
+            menu.find('a').click()
+        }
     </script>
     <!-- Plugin used-->
     @if(session('success'))

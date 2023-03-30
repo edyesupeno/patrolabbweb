@@ -96,4 +96,9 @@
         </form>
     </div>
     <!-- Container-fluid Ends-->
+    @push('js')
+        <script>
+            active_menu("#data_master", "#user")
+        </script>
+    @endpush
 @endsection
