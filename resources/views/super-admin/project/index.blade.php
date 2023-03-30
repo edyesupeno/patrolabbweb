@@ -25,7 +25,7 @@ $section = 'wilayah';
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-lg-end mb-3">
-                <a class="btn btn-success" href="{{ route('project-model.create') }}">Tambah Project Model</a>
+                <a class="btn btn-success" href="{{ route('project-model.create') }}">Tambah Project</a>
             </div>
             <table class="table table-hover table-bordered" id="mytable">
                 <thead class="bg-light">
@@ -102,6 +102,7 @@ $section = 'wilayah';
             }
         ]
     });
+    active_menu("#data_master", "#project")
 </script>
 <div class="d-flex">
     <a class="btn btn-warning me-2">Edit</a>

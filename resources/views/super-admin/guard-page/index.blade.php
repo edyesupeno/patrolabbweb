@@ -92,6 +92,7 @@
             }
         ]
     });
+    active_menu("#menu-guard", "#sub-list-guard")
 </script>
 <div class="d-flex">
     <a class="btn btn-warning me-2">Edit</a>

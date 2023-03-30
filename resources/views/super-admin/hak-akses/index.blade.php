@@ -66,5 +66,9 @@ $section = 'wilayah';
         }
     }
 </script>
-
+@push('js')
+<script>
+    active_menu("#data_master", "#hak_akses")
+</script>
+@endpush
 @endsection

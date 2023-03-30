@@ -16,14 +16,14 @@ class ProjectModelController extends Controller
 {
     public function index()
     {
-        $data['title'] = 'Daftar Project Model';
+        $data['title'] = 'Daftar Project';
         $data['project_model'] = ProjectModel::all();
         return view('super-admin.project.index', $data);
     }
 
     public function create()
     {
-        $data['title'] = 'Tambah Project Model';
+        $data['title'] = 'Tambah Project';
         return view('super-admin.project.create', $data);
     }
 

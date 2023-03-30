@@ -40,7 +40,7 @@
 @push('js')
 <script>
     $('#mytable').addClass('w-100').DataTable({
-        scrollX : true,
+        scrollX: true,
         processing: true,
         serverSide: true,
         ajax: "{{ route('area.datatable') }}",
@@ -62,6 +62,7 @@
             }
         ]
     });
+    active_menu("#data_master", "#area")
 </script>
 @endpush
 

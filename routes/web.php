@@ -1,20 +1,22 @@
 <?php
 
-use App\Http\Controllers\ApiDocsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AsetController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GuardController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ApiDocsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WilayahController;
+use App\Http\Controllers\AuditLogController;
 use App\Http\Controllers\HakAksesController;
 use App\Http\Controllers\CheckPointController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\AiMasterDataController;
 use App\Http\Controllers\AsetLocationController;
 use App\Http\Controllers\ProjectModelController;
+use App\Models\AuditLog;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,7 +51,8 @@ Route::group(['prefix' => 'super-admin', 'middleware' => ['auth', 'verified', 'r
         'aset' => AsetController::class,
         'hak-akses' => HakAksesController::class,
         'project-model' => ProjectModelController::class,
-        'aset-location' => AsetLocationController::class
+        'aset-location' => AsetLocationController::class,
+        'audit-log' => AuditLogController::class
 
     ]);
 
@@ -69,6 +72,10 @@ Route::group(['prefix' => 'super-admin', 'middleware' => ['auth', 'verified', 'r
 
     //Guard
     Route::get('guard-datatable', [GuardController::class, 'datatable'])->name('guard.datatable');
+
+    //Audit Log
+    Route::get('audit-log-datatable', [AuditLogController::class, 'datatable'])->name('audit-log.datatable');
+
 
 });
 

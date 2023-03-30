@@ -50,7 +50,7 @@
             {
                 data: 'nama',
                 name: 'Nama CheckPoint'
-            }, 
+            },
             {
                 data: 'lokasi',
                 name: 'Nama CheckPoint'
@@ -61,6 +61,7 @@
             }
         ]
     });
+    active_menu("#menu-checkpoint", "#sub-list-checkpoint")
 </script>
 @endpush
 

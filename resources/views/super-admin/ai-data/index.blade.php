@@ -96,6 +96,7 @@
             }
         ]
     });
+    active_menu("#menu-ai", "#sub-data-ai")
 </script>
 <div class="d-flex">
     <a class="btn btn-warning me-2">Edit</a>
