@@ -57,7 +57,7 @@ Route::group(['prefix' => 'super-admin', 'middleware' => ['auth', 'verified', 'r
     ]);
 
     //Route
-    Route::get('/hak-akses/project/{id}', [HakAksesController::class, 'get_project'])->name('hak-akses-get-project');
+    Route::get('/project-by-wilayah/{id}', [ProjectModelController::class, 'by_wilayah'])->name('project-by-wilayah');
 
     //Route Data Table
     Route::get('user-datatable', [UserController::class, 'datatable'])->name('user.datatable');

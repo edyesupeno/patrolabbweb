@@ -23,7 +23,7 @@ class ProjectModel extends Model
 
     public function data_guards()
     {
-        return $this->hasMany(Guard::class, 'id_project');
+        return $this->belongsToMany(Guard::class,'pivot_guard_projects','id_guard','id_project');
     }
     
 }

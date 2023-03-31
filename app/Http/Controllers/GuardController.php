@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PivotGuardProject;
 use Throwable;
+use App\Models\Area;
 use App\Models\Guard;
-use App\Helper\ApiHelper;
+use App\Models\Wilayah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Validator;
 
 class GuardController extends Controller
 {
@@ -18,6 +22,7 @@ class GuardController extends Controller
      */
     public function index()
     {
+        return dd(Guard::first());
         $data['title'] = "Daftar Petugas";
         return view('super-admin.guard-page.index', $data);
     }
@@ -29,7 +34,11 @@ class GuardController extends Controller
      */
     public function create()
     {
-        //
+        $data['title'] = 'Tambah Guard';
+        $data['wilayah'] = Wilayah::all();
+        $data['area'] = Area::all();
+        $data['shift'] = (object)[(object)['id'=>1,'nama'=>'test']];
+        return view('super-admin.guard-page.create',$data);
     }
 
     /**
@@ -40,7 +49,42 @@ class GuardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $validator = Validator::make($request->all(),[
+                'no_badge'=>'required|numeric',
+                'nama'=>'required|string',
+                'ttl'=>'required',
+                'jenis_kelamin'=>'required|in:laki laki, perempuan',
+                'email'=>'required|unique:guards',
+                'wa'=>'required|numeric',
+                'alamat'=>'required',
+                'id_wilayah'=>'required|numeric',
+                'id_project'=>'required|array',
+                'id_project.*'=>'required|numeric',
+                'id_area'=>'required|numeric',
+                'id_shift'=>'required|numeric',
+            ]);
+
+            if($validator->fails()){
+                return redirect()->back()->withErrors($validator->errors())->withInput($request->all());
+            }
+            $data = $validator->validated();
+
+            $guard = Guard::create($data);
+            foreach($request->id_project as $item){
+                PivotGuardProject::create([
+                    'id_guard'=>$guard->id,
+                    'id_project'=>$item
+                ]);
+            }
+            DB::commit();
+            return redirect()->route('guard.index')->with('success', 'Data Berhasil Ditambahkan');
+        } catch (Throwable $e) {
+            DB::rollback();
+            Log::debug('GuardController store() ' . $e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     /**
