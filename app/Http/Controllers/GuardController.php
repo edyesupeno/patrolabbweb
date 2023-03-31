@@ -22,7 +22,6 @@ class GuardController extends Controller
      */
     public function index()
     {
-        return dd(Guard::first());
         $data['title'] = "Daftar Petugas";
         return view('super-admin.guard-page.index', $data);
     }
@@ -106,7 +105,12 @@ class GuardController extends Controller
      */
     public function edit(Guard $guard)
     {
-        //
+        $data['title'] = 'Edit Guard';
+        $data['wilayah'] = Wilayah::all();
+        $data['area'] = Area::all();
+        $data['guard'] = $guard;
+        $data['shift'] = (object)[(object)['id'=>1,'nama'=>'test']];
+        return view('super-admin.guard-page.edit',$data);
     }
 
     /**
@@ -138,10 +142,12 @@ class GuardController extends Controller
         return DataTables::of($data)
             ->addIndexColumn()
             ->escapeColumns('active')
-            ->addColumn('nama', '{{$nama}}')
-            ->addColumn('id_area', '{{$id_area}}')
             ->addColumn('no_badge', '{{$no_badge}}')
-            ->addColumn('jabatan', '{{$jabatan}}')
+            ->addColumn('nama', '{{$nama}}')
+            ->addColumn('email', '{{$email}}')
+            ->addColumn('created_at', function (Guard $guard) {
+                return date('d M y', strtotime($guard->created_at));
+            })
             ->addColumn('action', function (Guard $guard) {
                 $data = [
                     'showurl' => route('guard.show', $guard->id),
