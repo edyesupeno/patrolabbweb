@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AuditLog;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AsetController;
@@ -13,10 +14,10 @@ use App\Http\Controllers\AuditLogController;
 use App\Http\Controllers\HakAksesController;
 use App\Http\Controllers\CheckPointController;
 use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\AsetPatroliController;
 use App\Http\Controllers\AiMasterDataController;
 use App\Http\Controllers\AsetLocationController;
 use App\Http\Controllers\ProjectModelController;
-use App\Models\AuditLog;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,7 @@ Route::group(['prefix' => 'super-admin', 'middleware' => ['auth', 'verified', 'r
         'hak-akses' => HakAksesController::class,
         'project-model' => ProjectModelController::class,
         'aset-location' => AsetLocationController::class,
+        'aset-patroli' => AsetPatroliController::class,
         'audit-log' => AuditLogController::class
 
     ]);
@@ -69,6 +71,7 @@ Route::group(['prefix' => 'super-admin', 'middleware' => ['auth', 'verified', 'r
     Route::get('aset-datatable', [AsetController::class, 'datatable'])->name('aset.datatable');
     Route::get('project-datatable', [ProjectModelController::class, 'datatable'])->name('project.datatable');
     Route::get('aset-location-datatable', [AsetLocationController::class, 'datatable'])->name('aset-location.datatable');
+    Route::get('hak-akses-datatable', [HakAksesController::class, 'datatable'])->name('hak-akses.datatable');
 
     //Guard
     Route::get('guard-datatable', [GuardController::class, 'datatable'])->name('guard.datatable');

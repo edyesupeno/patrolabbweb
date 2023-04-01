@@ -15,11 +15,36 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        Permission::create(['name' => 'dashboard']);
-        Permission::create(['name' => 'aset_index']);
-        Permission::create(['name' => 'aset_create']);
-        Permission::create(['name' => 'aset_edit']);
-        Permission::create(['name' => 'aset_show']);
-        Permission::create(['name' => 'aset_destroy']);
+        $data = [
+            [
+                'title' => 'asset',
+                'name'  =>  'Menu Aset',
+            ], 
+            [
+                'title' => 'asset',
+                'name'  => 'Melihat data Aset',
+            ],
+            [
+                'title' => 'asset',
+                'name'  =>  'Membuat data Aset',
+            ],
+            [
+                'title' => 'asset',
+                'name'  => 'Mengedit data Aset',
+            ],
+            [
+                'title' => 'asset',
+                'name'  => 'Melihat detail data Aset',
+            ],
+            [
+                'title' => 'asset',
+                'name'  => 'Menghapus data Aset',
+            ]
+
+        ];
+
+        foreach ($data as $item) {
+            Permission::create($item);
+        }
     }
 }

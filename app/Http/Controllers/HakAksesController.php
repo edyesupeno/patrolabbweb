@@ -2,69 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
+use Throwable;
+use App\Models\Wilayah;
 use App\Models\HakAkses;
 use App\Models\ProjectModel;
-use App\Models\Wilayah;
-use Throwable;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Log;
+use Spatie\Permission\Models\Permission;
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Validator;
 
 class HakAksesController extends Controller
 {
     public function index()
     {
         $data['title'] = 'Daftar Hak Akses';
-        $data['hak_akses'] = HakAkses::all();
         return view('super-admin.hak-akses.index', $data);
     }
 
     public function create()
     {
         $data['title'] = 'Tambah Hak Akses';
-        $data['permission'] = [
-            'Aset' => [
-                'Menu Aset' => "aset_menu",
-                'Melihat data Aset' => "aset_index",
-                'Membuat data Aset' => "aset_create",
-                'Mengedit data Aset' => "aset_edit",
-                'Melihat detail data Aset' => "aset_show",
-                'Menghapus data Aset' => "aset_destroy",
-            ],
-            'Wilayah' => [
-                'Menu Wilayah' => "wilayah_menu",
-                'Melihat data Wilayah' => "wilayah_index",
-                'Membuat data Wilayah' => "wilayah_create",
-                'Mengedit data Wilayah' => "wilayah_edit",
-                'Melihat detail data Wilayah' => "wilayah_show",
-                'Menghapus data Wilayah' => "wilayah_destroy",
-            ]
-        ];
+        $data['permission'] = Permission::all();
         $data['wilayah'] = Wilayah::all();
         return view('super-admin.hak-akses.create', $data);
     }
 
     public function store(Request $request)
     {
-        return dd($request->all());
-        try {
-            DB::beginTransaction();
+         try {
             $validator = Validator::make($request->all(),[
-                'role_name'=>'required',
+                'name'=>'required|unique:roles',
                 'permission_id'=>'required',
             ]);
 
             if($validator->fails()){
                 return redirect()->back()->withErrors($validator->errors())->withInput($request->all());
             }
-            $data = $validator->validated();
-
-            HakAkses::create($data);
-            DB::commit();
+           $validator->validated();
+            $role = Role::create(['name' => $request->name]);
+            foreach ($request->permission_id as $item) {
+                $permission = Permission::find($item);
+                $permission->assignRole($role);
+            }
             return redirect()->route('hak-akses.index')->with('success', 'Data Berhasil Ditambahkan');
         } catch (Throwable $e) {
-            DB::rollback();
             Log::debug('HakAksesController store() ' . $e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
         }
@@ -120,6 +104,30 @@ class HakAksesController extends Controller
             Log::debug('HakAksesController destroy() ' . $e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
         }
+    }
+
+    public function datatable()
+    {
+        $data = Role::all();
+       return DataTables::of($data)
+            ->addIndexColumn()
+            ->escapeColumns('active')
+            ->addColumn('name', '{{$name}}')
+            ->addColumn('permission', function (Role $role){
+                $permission = '';
+                foreach ($role->permissions as $item) {
+                    $permission .= $item->name.'<br>';
+                }
+                return $permission;
+            })
+            ->addColumn('action', function (Role $role) {
+                $data = [
+                    'editurl' => route('hak-akses.edit', $role->id),
+                    'deleteurl' => route('hak-akses.destroy', $role->id)
+                ];
+                return $data;
+            })
+            ->toJson();
     }
    
 }

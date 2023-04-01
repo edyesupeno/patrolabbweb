@@ -25,49 +25,47 @@ $section = 'wilayah';
         <div class="d-flex justify-content-lg-end mb-3">
             <a class="btn btn-success" href="{{ route('hak-akses.create') }}">Tambah Hak Akses</a>
         </div>
-        <div class="table-responsive">
-            <table class="table table-hover table-bordered" id="my_table">
-                <thead class="bg-light">
-                    <tr>
-                        <th class="text-nowrap" style="width:50px">No</th>
-                        <th class="text-nowrap">Role</th>
-                        <th class="text-nowrap">Permission</th>
-                        <th class="text-nowrap" style="width: 100px">Tindakan</th>
-                    </tr>
-                </thead>
-                <!-- <tbody>
-                    @foreach ($hak_akses as $item)
-                    <tr>
-                        <td class="text-nowrap">{{ $loop->iteration }}</td>
-                        <td class="text-nowrap">{{ $item->role_name }}</td>
-                        <td class="text-nowrap">{{ $item->permission_id }}</td>
-                        <td class="text-nowrap">
-                            <div class="d-flex">
-                                <a href="{{ route('hak-akses.edit',$item->id) }}" class="btn btn-warning me-2">Edit</a>
-                                <form action="{{ route('hak-akses.destroy',$item->id) }}" method="post" id="delete_form{{ $item->id }}">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="button" class="btn btn-danger" onclick="delete_item('delete_form{{ $item->id }}')">Hapus</button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody> -->
-            </table>
-        </div>
+        <table class="table table-hover table-bordered" id="mytable">
+            <thead class="bg-light">
+                <tr>
+                    <th class="text-nowrap" style="width:50px">No</th>
+                    <th class="text-nowrap">Name</th>
+                    <th class="text-nowrap">Permission</th>
+                </tr>
+            </thead>
+        </table>
     </div>
 </div>
-<script>
-    function delete_item(form) {
-        let cf = confirm('Yakin Menghapus Data ?')
-        if (cf) {
-            document.getElementById(form).submit();
-        }
-    }
-</script>
+<div id="actionbase" class="d-none">
+    <div class="d-flex">
+        <a class="btn btn-warning me-2">Edit</a>
+        <form method="post" class="d-inline">
+            @csrf
+            @method('delete')
+            <button onclick="hapus_data(event)" class="btn btn-danger me-2" type="button">Hapus</button>
+        </form>
+    </div>
+</div>
 @push('js')
 <script>
+    $('#mytable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('hak-akses.datatable') }}",
+        columns: [{
+                data: 'DT_RowIndex',
+                name: 'No'
+            },
+            {
+                data: 'name',
+                name: 'Name'
+            },
+            {
+                data: 'permission',
+                name: 'Permission'
+            }
+        ]
+    });
     active_menu("#data_master", "#hak_akses")
 </script>
 @endpush

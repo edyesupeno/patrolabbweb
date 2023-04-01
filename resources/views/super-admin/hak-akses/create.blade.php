@@ -26,48 +26,46 @@
 
                     <div class="col">
                         <div class="mb-3 col-lg-3">
-                            <label for="role_name" class="form-label">Role <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control @error('role_name') is-invalid @enderror" name="role_name" id="role_name" placeholder="Masukkan Role" value="{{ old('role_name') }}">
-                            @error('role_name')<span class="text-danger d-block">{{ $message }}</span>@enderror
+                            <label for="name" class="form-label">Role <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Masukkan Role" value="{{ old('role_name') }}">
+                            @error('name')<span class="text-danger d-block">{{ $message }}</span>@enderror
                         </div>
-                      
 
-                        </div>
-                       
 
-                        <div class="mb-3">
-                            <label for="permission_id" class="form-label">Permission <span class="text-danger">*</span></label>
-                            <div>
-                                <!-- <b>Aset</b> -->
+                    </div>
 
-                                @foreach ($permission as $key=>$item)
-                                <b>{{$key}}</b>
-                                <div class="row row-cols-1 row-cols-lg-6 mt-2">
-                                    @foreach ($item as $index=>$value)
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="{{$value}}" id="" name="permission[]">
-                                            <label class="form-check-label" for="">
-                                                {{ $index }}
-                                            </label>
-                                        </div>
+
+                    <div class="mb-3">
+                        <label for="permission_id" class="form-label">Permission <span class="text-danger">*</span></label>
+                        <div>
+                            <!-- <b>Aset</b> -->
+
+                            <b>Aset</b>
+                            <div class="row row-cols-1 row-cols-lg-6 mt-2">
+                                @foreach (Spatie\Permission\Models\Permission::where('title','asset')->get() as $item)
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{$item->id}}" id="" name="permission_id[]" checked>
+                                        <label class="form-check-label" for="">
+                                            {{ $item->name }}
+                                        </label>
                                     </div>
-                                    @endforeach
                                 </div>
                                 @endforeach
                             </div>
-
-                            @error('permission_id')<span class="text-danger d-block">{{ $message }}</span>@enderror
                         </div>
-                    </div>
 
+                        @error('permission_id')<span class="text-danger d-block">{{ $message }}</span>@enderror
+                    </div>
                 </div>
                 <div class="d-flex justify-content-start">
                     <button class="btn btn-success">Simpan</button>
                 </div>
             </div>
+
         </div>
-    </form>
+</div>
+</form>
 </div>
 
 
