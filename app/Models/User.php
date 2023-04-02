@@ -46,7 +46,7 @@ class User extends Authenticatable
     protected $with = [
         'data_guard',
         'data_guard.wilayah',
-        'data_guard.project',
+        'data_guard.projects',
         'data_guard.area'
     ];
 }
