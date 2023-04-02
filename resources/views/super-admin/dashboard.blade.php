@@ -243,7 +243,7 @@
             }
         ]
     });
-    active_menu("#data_master", "#wilayah")
+    menu_active("#menu_dashboard")
 </script>
 <div class="d-flex">
     <a class="btn btn-warning me-2">Edit</a>

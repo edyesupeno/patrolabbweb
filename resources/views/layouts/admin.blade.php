@@ -49,7 +49,7 @@
                 </div>
                 <div class="left-header col horizontal-wrapper ps-0">
                     <ul class="horizontal-menu">
-                        
+
                     </ul>
                 </div>
                 <div class="nav-right col-8 pull-right right-header p-0">
@@ -119,7 +119,7 @@
                                         <h6>Patrol ABB</h6>
                                     </div>
                                 </li>
-                                <li><a href="{{ route('admin.dashboard') }}" data-original-title="" title=""> <i data-feather="bar-chart-2"></i><span>Dashboard </span></a></li>
+                                <li><a href="{{ route('admin.dashboard') }}" data-original-title="" title="" id="menu_dashboard"> <i data-feather="bar-chart-2"></i><span>Dashboard </span></a></li>
                                 </li>
                                 <li class="sidebar-list" id="data_master">
                                     <a class="sidebar-link sidebar-title" href="#"><i class="menu-icon" data-feather="home"></i><span>Master Data</span></a>
@@ -136,6 +136,18 @@
                                     </ul>
                                 </li>
                                 <li class="sidebar-list" id="menu-patrol"><a class="sidebar-link sidebar-title" href="#"><i data-feather="shield"></i><span>Patrol</span></a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="" id="sub-schedule">Schedule</a></li>
+                                        <li><a href="" id="sub-notice">Notice Boards</a></li>
+                                    </ul>
+                                </li>
+                                <li class="sidebar-list" id="menu-patrol"><a class="sidebar-link sidebar-title" href="#"><i data-feather="truck"></i><span>Asset Management</span></a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="" id="sub-schedule">Schedule</a></li>
+                                        <li><a href="" id="sub-notice">Notice Boards</a></li>
+                                    </ul>
+                                </li>
+                                <li class="sidebar-list" id="menu-patrol"><a class="sidebar-link sidebar-title" href="#"><i data-feather="command"></i><span>Gate Access</span></a>
                                     <ul class="sidebar-submenu">
                                         <li><a href="" id="sub-schedule">Schedule</a></li>
                                         <li><a href="" id="sub-notice">Notice Boards</a></li>
@@ -179,7 +191,7 @@
                                         <li><a href="">Asset Report</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="{{ route('audit-log.index') }}" id="menu-audit" data-original-title="" title=""> <i data-feather="alert-triangle"></i><span>Audit Log </span></a></li>
+                                <li><a href="{{ route('audit-log.index') }}" id="menu-audit" data-original-title="" title=""> <i data-feather="activity"></i><span>Audit Log </span></a></li>
                             </ul>
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

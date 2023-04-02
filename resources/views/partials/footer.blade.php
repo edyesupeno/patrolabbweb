@@ -59,9 +59,15 @@
         }
 
         for (let index = 0; index < 3; index++) {
-            $('#myselect'+index).select2();
+            $('#myselect' + index).select2();
 
         }
+
+        function menu_active(base) {
+            let menus = $(base)
+            menus.find('a').addClass('active').click()
+        }
+
         function active_menu(base, item) {
             let menu = $(base)
             menu.find(item).addClass('active')
