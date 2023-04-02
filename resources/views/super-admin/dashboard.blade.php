@@ -1,3 +1,6 @@
+@php
+$page = 'dashboard';
+@endphp
 @extends('layouts.admin')
 @section('content')
 <div class="container-fluid">

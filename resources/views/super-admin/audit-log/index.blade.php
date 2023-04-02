@@ -1,7 +1,6 @@
-<!-- @php
-$page = 'data-master';
-$section = 'wilayah';
-@endphp -->
+@php
+$page = 'audit_log';
+@endphp
 @extends('layouts.admin')
 @section('content')
 <div class="container-fluid">

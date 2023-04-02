@@ -31,20 +31,13 @@
 
 <style>
     .active-menu {
-        background-color: #7366ff !important;
+        background-color: rgb(218, 214, 255) !important;
+        border-radius: 10px;
+        color: #7366ff !important;
     }
 
-    /* .active-menu .menu-icon,
-    .active-menu .menu-icon:hover,
-    .active-menu i,
-    .active-menu span {
-        color: white !important;
-        opacity: 1 !important;
-    } */
-
-    .active-menu a,
-    .active-menu a .menu-icon,
-    .active-menu a span {
-        color: white !important;
+    .active-menu span,
+    .active-menu svg {
+        color: #7366ff !important;
     }
 </style>

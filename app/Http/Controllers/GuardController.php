@@ -36,7 +36,6 @@ class GuardController extends Controller
         $data['title'] = 'Tambah Guard';
         $data['wilayah'] = Wilayah::all();
         $data['area'] = Area::all();
-        $data['shift'] = (object)[(object)['id'=>1,'nama'=>'test']];
         return view('super-admin.guard-page.create',$data);
     }
 
@@ -62,7 +61,6 @@ class GuardController extends Controller
                 'id_project'=>'required|array',
                 'id_project.*'=>'required|numeric',
                 'id_area'=>'required|numeric',
-                'id_shift'=>'required|numeric',
             ]);
 
             if($validator->fails()){
@@ -109,7 +107,6 @@ class GuardController extends Controller
         $data['wilayah'] = Wilayah::all();
         $data['area'] = Area::all();
         $data['guard'] = $guard;
-        $data['shift'] = (object)[(object)['id'=>1,'nama'=>'test']];
         return view('super-admin.guard-page.edit',$data);
     }
 

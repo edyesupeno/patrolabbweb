@@ -107,21 +107,6 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="id_shift" class="form-label">Shift <span class="text-danger">*</span></label>
-                                <select class="form-select @error('id_shift') is-invalid @enderror" name="id_shift"
-                                    id="myselect2">
-                                    <option value="" selected disabled>--Pilih--</option>
-                                    @foreach ($shift as $item)
-                                        <option value="{{ $item->id }}"
-                                            {{ old('id_shift') == $item->id ? 'selected' : '' }}>{{ $item->nama }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('id_shift')
-                                    <span class="text-danger d-block">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
                                 <label for="id_wilayah" class="form-label">Wilayah <span class="text-danger">*</span></label>
                                 <select class="form-select @error('id_wilayah') is-invalid @enderror" name="id_wilayah" onchange="get_project(this.value)"
                                     id="myselect0">

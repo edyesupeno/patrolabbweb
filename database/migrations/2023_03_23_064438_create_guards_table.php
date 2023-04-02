@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('alamat');
             $table->foreignId('id_wilayah');
             $table->foreignId('id_area');
-            $table->foreignId('id_shift');
             $table->timestamps();
         });
     }

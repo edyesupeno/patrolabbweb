@@ -26,7 +26,6 @@ class GuardSeeder extends Seeder
             'alamat' => 'Jl. Raya',
             'id_wilayah' => 1,
             'id_area' => 1,
-            'id_shift' => 1,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

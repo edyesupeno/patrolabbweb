@@ -108,7 +108,7 @@ class HakAksesController extends Controller
 
     public function datatable()
     {
-        $data = Role::all();
+        $data = Role::where('name','!=','super-admin')->where('name', '!=', 'user')->get();
        return DataTables::of($data)
             ->addIndexColumn()
             ->escapeColumns('active')
