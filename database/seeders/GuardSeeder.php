@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Guard;
 use Illuminate\Database\Seeder;
+use App\Models\PivotGuardProject;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class GuardSeeder extends Seeder
@@ -15,7 +16,7 @@ class GuardSeeder extends Seeder
      */
     public function run()
     {
-        Guard::create([
+        $guard = Guard::create([
             'no_badge' => '123456',
             'nama' => 'AGUS',
             'ttl' => '1990-01-01',
@@ -29,5 +30,11 @@ class GuardSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        PivotGuardProject::create([
+            'id_guard' => $guard->id,
+            'id_project' => 1
+        ]);
+
     }
+
 }
