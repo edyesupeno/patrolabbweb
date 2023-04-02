@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('no_badge')->unique();
             $table->string('nama');
             $table->string('ttl');
-            $table->enum('jenis_kelamin',['laki laki','perempuan']);
+            $table->enum('jenis_kelamin',['laki-laki','perempuan']);
             $table->string('email');
             $table->string('wa');
             $table->string('alamat');

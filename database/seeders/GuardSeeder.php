@@ -19,7 +19,7 @@ class GuardSeeder extends Seeder
             'no_badge' => '123456',
             'nama' => 'AGUS',
             'ttl' => '1990-01-01',
-            'jenis_kelamin' => 'Laki-laki',
+            'jenis_kelamin' => 'laki-laki',
             'email' => 'agus@gmail.com',
             'wa' => '08123456789',
             'alamat' => 'Jl. Raya',
