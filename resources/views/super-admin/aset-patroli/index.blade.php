@@ -39,7 +39,7 @@
                             <th class="text-nowrap" style="width: 100px">Tindakan</th>
                         </tr>
                     </thead>
-                    
+
                 </table>
             </div>
         </div>
@@ -124,7 +124,7 @@
             }
         ]
     });
-    active_menu("#data_master", "#patroli_asset")
+    active_menu("#menu_aset", "#patroli_asset")
 </script>
 <div class="d-flex">
     <a class="btn btn-warning me-2">Edit</a>

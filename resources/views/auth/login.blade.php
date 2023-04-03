@@ -1,47 +1,86 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html lang="en">
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cuba admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Cuba admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="{{ URL::asset("/template/assets/images/favicon.png") }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ URL::asset("/template/assets/images/favicon.png") }}" type="image/x-icon">
+    <title>{{ $title }}</title>
+    <!-- Google font-->
+    @include('partials.header')
+</head>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+<body>
+    <!-- login page start-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-5"><img class="bg-img-cover bg-center" src="{{ URL::asset("/template/assets/images/login/3.jpg") }}" alt="looginpage"></div>
+            <div class="col-xl-7 p-0">
+                <div class="login-card">
+                    <div>
+                        <div><a class="logo text-center" href="{{ url("index.html") }}"><img class="img-fluid for-light" src="{{ URL::asset("/template/assets/images/logo/login.png") }}" alt="looginpage"><img class="img-fluid for-dark" src="{{ URL::asset("/template/assets/images/logo/logo_dark.png") }}" alt="looginpage"></a></div>
+                        <div class="login-main">
+                            <form class="theme-form" action="{{ route('login') }}" method="POST">
+                                @csrf
+                                <h4>SISTEM PATROL PT.ABB</h4>
+                                <p>masukkan email dan password untuk login</p>
+                                <div class="form-group">
+                                    <label class="col-form-label">Email</label>
+                                    <input class="form-control" type="email" name="email" required="" placeholder="test@adonara.com">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label">Password</label>
+                                    <div class="form-input position-relative">
+                                        <input class="form-control" type="password" id="password" name="password" required="" placeholder="*********">
+                                        <div class="show-hide" onclick="togle_password('#password')"><span class="show"> </span></div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <div class="checkbox p-0">
+                                        <input id="checkbox1" name="remember" type="checkbox">
+                                        <label class="text-muted" for="checkbox1">Remember password</label>
+                                    </div>
+                                    <button class="btn btn-primary btn-block w-100" type="submit">Masuk</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <!-- latest jquery-->
+        <!-- latest jquery-->
+        <script src="{{ URL::asset("/template/assets/js/jquery-3.5.1.min.js") }}"></script>
+        <!-- Bootstrap js-->
+        <script src="{{ URL::asset("/template/assets/js/bootstrap/bootstrap.bundle.min.js") }}"></script>
+        <!-- feather icon js-->
+        <script src="{{ URL::asset("/template/assets/js/icons/feather-icon/feather.min.js") }}"></script>
+        <script src="{{ URL::asset("/template/assets/js/icons/feather-icon/feather-icon.js") }}"></script>
+        <!-- scrollbar js-->
+        <!-- Sidebar jquery-->
+        <script src="{{ URL::asset("/template/assets/js/config.js") }}"></script>
+        <!-- Plugins JS start-->
+        <!-- Plugins JS Ends-->
+        <!-- Theme js-->
+        <script src="{{ URL::asset("/template/assets/js/script.js") }}"></script>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+        <script>
+            function togle_password(id) {
+                let input = $(id)
+                if (input.attr('type') == 'password') {
+                    input.attr('type', 'text')
+                } else {
+                    input.attr('type', 'password')
+                }
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+            }
+        </script>
+    </div>
+</body>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ml-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+</html>

@@ -7,6 +7,7 @@ use App\Http\Controllers\AsetController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GuardController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\ApiDocsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WilayahController;
@@ -54,6 +55,7 @@ Route::group(['prefix' => 'super-admin', 'middleware' => ['auth', 'verified', 'r
         'project-model' => ProjectModelController::class,
         'aset-location' => AsetLocationController::class,
         'aset-patroli' => AsetPatroliController::class,
+        'shift'=>ShiftController::class,
         'audit-log' => AuditLogController::class
 
     ]);

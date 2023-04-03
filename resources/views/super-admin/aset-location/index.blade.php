@@ -121,7 +121,7 @@
             }
         ]
     });
-    active_menu("#data_master", "#location_asset")
+    active_menu("#menu_aset", "#location_asset")
 </script>
 <div class="d-flex">
     <a class="btn btn-warning me-2">Edit</a>

@@ -73,6 +73,24 @@
             menu.find(item).addClass('active')
             menu.find('a').click()
         }
+
+        function logout(id) {
+            let form = $(id)
+            //console.log(form)
+            Swal.fire({
+                title: 'Anda yakin Logout?',
+                text: "Keluar dari sistem",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Logout!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit()
+                }
+            })
+        }
     </script>
     <!-- Plugin used-->
     @if(session('success'))

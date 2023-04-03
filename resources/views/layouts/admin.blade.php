@@ -71,16 +71,20 @@
                         <li class="maximize"><a class="text-dark" href="{{ url('#!') }}" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
                         <li class="profile-nav onhover-dropdown p-0 me-0">
                             <div class="media profile-media"><img class="b-r-10" src="{{ URL::asset('/template/assets/images/dashboard/profile.jpg') }}" alt="">
-                                <div class="media-body"><span>Edy SW</span>
-                                    <p class="mb-0 font-roboto">Super Admin <i class="middle fa fa-angle-down"></i></p>
+                                <div class="media-body"><span>{{ auth()->user()->name }}</span>
+                                    <p class="mb-0 font-roboto">{{ auth()->user()->getRoleNames()[0] }} <i class="middle fa fa-angle-down"></i></p>
                                 </div>
                             </div>
                             <ul class="profile-dropdown onhover-show-div">
                                 <li><a href="{{ url('#') }}"><i data-feather="user"></i><span>Account
                                         </span></a></li>
                                 <li><a href="{{ url('#') }}"><i data-feather="settings"></i><span>Settings</span></a></li>
-                                <li><a href="{{ url('#') }}"><i data-feather="log-in"> </i><span>Log
-                                            in</span></a></li>
+                                <li>
+                                    <form action="{{ route('logout') }}" method="POST" onclick="logout('#form_logout')" id="form_logout">
+                                        @csrf
+                                        <i data-feather="log-in"> </i><span>Logout</span>
+                                    </form>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -126,13 +130,11 @@
                                     <ul class="sidebar-submenu">
                                         <li><a href="{{ route('user.index') }}" id="user">User</a></li>
                                         <li><a href="{{ route('aset.index') }}" id="asset">Asset</a></li>
-                                        <li><a href="{{ route('aset-patroli.index') }}" id="patroli_asset">Patroli Asset</a></li>
-                                        <li><a href="{{ route('aset-location.index') }}" id="location_asset">Location Asset</a></li>
                                         <li><a href="{{ route('area.index') }}" id="area">Areas</a></li>
                                         <li><a href="{{ route('project-model.index') }}" id="project">Projects</a></li>
                                         <li><a href="{{ route('wilayah.index') }}" id="wilayah">Region</a></li>
                                         <li><a href="{{ route('hak-akses.index') }}" id="hak_akses">Permission</a></li>
-                                        <li><a href="{{ route('hak-akses.index') }}" id="shift">Shift</a></li>
+                                        <li><a href="{{ route('shift.index') }}" id="shift">Shift</a></li>
                                     </ul>
                                 </li>
                                 <li class="sidebar-list" id="menu-patrol"><a class="sidebar-link sidebar-title" href="#"><i data-feather="shield"></i><span>Patrol</span></a>
@@ -141,10 +143,10 @@
                                         <li><a href="" id="sub-notice">Notice Boards</a></li>
                                     </ul>
                                 </li>
-                                <li class="sidebar-list" id="menu-patrol"><a class="sidebar-link sidebar-title" href="#"><i data-feather="truck"></i><span>Asset Management</span></a>
+                                <li class="sidebar-list" id="menu_aset"><a class="sidebar-link sidebar-title" href="#"><i data-feather="truck"></i><span>Asset Management</span></a>
                                     <ul class="sidebar-submenu">
-                                        <li><a href="" id="sub-schedule">Schedule</a></li>
-                                        <li><a href="" id="sub-notice">Notice Boards</a></li>
+                                        <li><a href="{{ route('aset-patroli.index') }}" id="patroli_asset">Patroli Asset</a></li>
+                                        <li><a href="{{ route('aset-location.index') }}" id="location_asset">Location Asset</a></li>
                                     </ul>
                                 </li>
                                 <li class="sidebar-list" id="menu-patrol"><a class="sidebar-link sidebar-title" href="#"><i data-feather="command"></i><span>Gate Access</span></a>

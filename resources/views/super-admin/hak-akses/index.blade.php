@@ -36,7 +36,84 @@ $section = 'wilayah';
         </table>
     </div>
 </div>
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="detail_permission" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Detail Permission</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Permission</th>
+                                <th scope="col">Menu</th>
+                                <th scope="col">Lihat</th>
+                                <th scope="col">Buat</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Detail</th>
+                                <th scope="col">Hapus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Dashboard</th>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                            </tr>
+                            <tr>
+                                <th>User</th>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                            </tr>
+                            <tr>
+                                <th>Aset</th>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                            </tr>
+                            <tr>
+                                <th>Patroli Aset</th>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="actionbase" class="d-none">
+    <div class="akses">
+        <button type="button" class="btn btn-primary" id="button_permission">Detail</button>
+    </div>
     <div class="d-flex">
         <a class="btn btn-warning me-2">Edit</a>
         <form method="post" class="d-inline">
@@ -62,11 +139,21 @@ $section = 'wilayah';
             },
             {
                 data: 'permission',
-                name: 'Permission'
+                render: function(data, type, row) {
+                    let html = $('#actionbase').clone()
+                    html = html.find('.akses')
+                    html.find('#button_permission').attr('onclick', 'lihat_akses(' + row.id + ')')
+                    return html.html()
+                }
             }
         ]
     });
     active_menu("#data_master", "#hak_akses")
+
+    function lihat_akses(id) {
+        let modal = $('#detail_permission')
+        modal.modal('show')
+    }
 </script>
 @endpush
 @endsection
