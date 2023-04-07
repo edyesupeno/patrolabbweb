@@ -16,4 +16,9 @@ class Area extends Model
     public function data_guards(){
         return $this->hasMany(Area::class,'id_area');
     }
+
+    public function checkpoints()
+    {
+        return $this->hasMany(CheckPoint::class, 'id_area');
+    }
 }

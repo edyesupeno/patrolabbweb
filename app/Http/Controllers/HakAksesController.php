@@ -129,5 +129,56 @@ class HakAksesController extends Controller
             })
             ->toJson();
     }
+
+    public function get_hak_akses(Request $request){
+        $validator = Validator::make($request->all(),[
+            'id' => 'required|numeric'
+        ]);
+
+        if($validator->fails()){
+            return response()->json([
+                'status' => false,
+                'message' => 'input tidak valid',
+                'data' => $validator->errors()
+            ],401);
+
+        }
+        $data = Role::find($request->id);
+        $permission_title = $data->first()->title;
+        function get_permission($title, $fitur){
+            $data = Permission::firstWhere([
+                'title' => $title,
+                'fitur' => $fitur
+            ]);
+
+            if($data){
+                return 'checked';
+            }
+            return '';
+        }
+        $menu = get_permission($permission_title, 'menu');
+        $index = get_permission($permission_title, 'index');
+        $create = get_permission($permission_title, 'create');
+        $edit = get_permission($permission_title, 'edit');
+        $show = get_permission($permission_title, 'show');
+        $destroy = get_permission($permission_title, 'destroy');
+        $html = '
+                            <tr>
+                                <th>' . $permission_title . '</th>
+                                <td><input class="form-check-input me-1" type="checkbox" '.$menu.' ></td>
+                                <td><input class="form-check-input me-1" type="checkbox" '.$index.'></td>
+                                <td><input class="form-check-input me-1" type="checkbox" '.$create.'></td>
+                                <td><input class="form-check-input me-1" type="checkbox" '.$edit.'></td>
+                                <td><input class="form-check-input me-1" type="checkbox" '.$show.'></td>
+                                <td><input class="form-check-input me-1" type="checkbox" '.$destroy.'></td>
+                            </tr>
+        ';
+        
+        return response()->json([
+            'status' => true,
+            'message' => 'Berhasil mendapatkan data',
+            'data' => $html
+        ], 200);
+    }
    
 }

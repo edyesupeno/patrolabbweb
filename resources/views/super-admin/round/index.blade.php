@@ -9,7 +9,7 @@
             <div class="col-6">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"> <i data-feather="home"></i></a></li>
-                    <li class="breadcrumb-item">Area Checkpoint</li>
+                    <li class="breadcrumb-item">Round</li>
                     <li class="breadcrumb-item">{{ $title }}</li>
                 </ol>
             </div>
@@ -21,15 +21,14 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex mb-3 justify-content-end">
-                <a href="{{route('check-point.create')}}" class="btn btn-success">Tambah Area CheckPoint</a>
+                <a href="{{route('round.create')}}" class="btn btn-success">Tambah Round</a>
             </div>
-            <table id="mytable" class="display" style="width:100%">
+            <table id="#mytable" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th style="max-width: 40px;">No</th>
-                        <th>Nama CheckPoint</th>
-                        <th>Kode</th>
-                        <th>Lattitude</th>
+                        <th>Nama</th>
+                        <th>Jumlah Check Point</th>
                         <th>Status</th>
                         <th>Area</th>
                         <th>Project</th>
@@ -87,7 +86,7 @@
             }
         ]
     });
-    active_menu("#menu-checkpoint", "#sub-list-checkpoint")
+    active_menu("#menu-round", "#sub-round-list")
 </script>
 
 @endpush

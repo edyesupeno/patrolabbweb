@@ -60,43 +60,8 @@ $section = 'wilayah';
                                 <th scope="col">Hapus</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th>Dashboard</th>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                            </tr>
-                            <tr>
-                                <th>User</th>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                            </tr>
-                            <tr>
-                                <th>Aset</th>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                            </tr>
-                            <tr>
-                                <th>Patroli Aset</th>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></td>
-                            </tr>
+                        <tbody id="base_akses">
+
                         </tbody>
                     </table>
                 </div>
@@ -152,7 +117,31 @@ $section = 'wilayah';
 
     function lihat_akses(id) {
         let modal = $('#detail_permission')
-        modal.modal('show')
+        $.ajax({
+            url: "{{ route('get-hak-akses') }}",
+            data: {
+                id: id
+            },
+            method: "POST",
+            headers: {
+                'X-CSRF-TOKEN': "{{csrf_token()}}"
+            },
+            beforeSend: function() {
+
+            },
+            success: function(response) {
+                console.log(response)
+                $('#base_akses').html(response.data)
+                modal.modal('show')
+            },
+            error: function(response) {
+                console.log(response)
+            },
+            complete: function() {
+
+            }
+        })
+
     }
 </script>
 @endpush

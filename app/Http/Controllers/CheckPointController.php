@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use App\Models\Area;
+use App\Models\Wilayah;
 use App\Models\CheckPoint;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -28,6 +30,8 @@ class CheckPointController extends Controller
     public function create()
     {
         $data['title'] = "Tambah Area CheckPoint";
+        $data['wilayah'] = Wilayah::all();
+        $data['area'] = Area::all();
         return view('super-admin.check-point.create', $data);
     }
 
@@ -39,7 +43,7 @@ class CheckPointController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return dd($request->all());
     }
 
     /**
@@ -94,8 +98,18 @@ class CheckPointController extends Controller
             ->addIndexColumn()
             ->escapeColumns('active')
             ->addColumn('nama', '{{$nama}}')
+            ->addColumn('kode', '{{$kode}}')
             ->addColumn('lokasi', '{{$lokasi}}')
-            ->addColumn('id_area', '{{$id_area}}')
+            ->addColumn('status', '{{$status}}')
+            ->addColumn('id_area', function (CheckPoint $checkpoints) {
+                return $checkpoints->area->nama;
+            })
+            ->addColumn('id_project', function (CheckPoint $checkpoints) {
+                return $checkpoints->project->nama_project;
+            })
+            ->addColumn('id_wilayah', function (CheckPoint $checkpoints) {
+                return $checkpoints->wilayah->nama;
+            })
             ->toJson();
     }
 }

@@ -27,13 +27,11 @@
                 <thead>
                     <tr>
                         <th style="max-width: 40px;">No</th>
-                        <th>Nama CheckPoint</th>
-                        <th>Kode</th>
-                        <th>Lattitude</th>
-                        <th>Status</th>
-                        <th>Area</th>
-                        <th>Project</th>
-                        <th>Wilayah</th>
+                        <th>Checkpoint</th>
+                        <th>Nama Aset</th>
+                        <th>Indikator</th>
+                        <th>Jumlah</th>
+                        <th>Foto</th>
                     </tr>
                 </thead>
             </table>
@@ -46,48 +44,36 @@
     $('#mytable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('check-point.datatable') }}",
+        ajax: "{{ route('check-point-aset.datatable') }}",
         columns: [{
                 data: 'DT_RowIndex',
                 name: 'No'
             },
             {
-                data: 'nama',
-                name: 'Nama CheckPoint'
-            },
-            {
-                data: 'kode',
-                name: 'Nama CheckPoint'
-            },
-            {
-                data: 'lokasi',
-                name: 'Nama CheckPoint'
-            },
-            {
-                data: 'status',
+                data: 'id_check_point',
                 render: function(data, type, row) {
-                    if (row.status == 'aktif') {
-                        return '<span class="badge badge-success">' + row.status + '</span>'
-                    } else {
-                        return '<span class="badge badge-danger">' + row.status + '</span>'
-                    }
+                    return '<span class="badge badge-success">' + row.id_check_point + '</span>'
                 }
             },
             {
-                data: 'id_area',
-                name: 'Nama Area'
+                data: 'nama',
+                name: 'Nama Aset'
             },
             {
-                data: 'id_project',
-                name: 'Nama Project'
+                data: 'indikator',
+                name: 'Indikator'
             },
             {
-                data: 'id_wilayah',
-                name: 'Nama Wilayah'
+                data: 'jumlah',
+                name: 'Jumlah'
+            },
+            {
+                data: 'foto',
+                name: 'foto'
             }
         ]
     });
-    active_menu("#menu-checkpoint", "#sub-list-checkpoint")
+    active_menu("#menu-checkpointaset", "#sub-checkpoint-aset-list")
 </script>
 
 @endpush

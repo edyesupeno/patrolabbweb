@@ -55,5 +55,10 @@
         </div>
     </div>
 </div>
+@push('js')
+<script>
+    active_menu("#data_master", "#area")
+</script>
+@endpush
 <!-- Container-fluid Ends-->
 @endsection

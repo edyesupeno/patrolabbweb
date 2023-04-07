@@ -22,5 +22,9 @@ class Wilayah extends Model
     public function data_guards(){
         return $this->hasMany(Guard::class,'id_wilayah');
     }
+    public function checkpoints()
+    {
+        return $this->hasMany(CheckPoint::class, 'id_wilayah');
+    }
 }
 

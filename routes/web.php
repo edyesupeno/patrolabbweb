@@ -7,6 +7,7 @@ use App\Http\Controllers\AsetController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GuardController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\RoundController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\ApiDocsController;
 use App\Http\Controllers\ProfileController;
@@ -19,6 +20,9 @@ use App\Http\Controllers\AsetPatroliController;
 use App\Http\Controllers\AiMasterDataController;
 use App\Http\Controllers\AsetLocationController;
 use App\Http\Controllers\ProjectModelController;
+use App\Http\Controllers\CheckpointAsetController;
+use App\Http\Controllers\IncomingVehicleController;
+use App\Http\Controllers\OutcomingVehicleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,12 +60,18 @@ Route::group(['prefix' => 'super-admin', 'middleware' => ['auth', 'verified', 'r
         'aset-location' => AsetLocationController::class,
         'aset-patroli' => AsetPatroliController::class,
         'shift'=>ShiftController::class,
-        'audit-log' => AuditLogController::class
+        'audit-log' => AuditLogController::class,
+        'incoming-vehicle' => IncomingVehicleController::class,
+        'outcoming-vehicle' => OutcomingVehicleController::class,
+        'round' => RoundController::class,
+        'checkpoint-aset' => CheckpointAsetController::class //route managemen controller client asset
 
     ]);
 
     //Route
     Route::get('/project-by-wilayah/{id}', [ProjectModelController::class, 'by_wilayah'])->name('project-by-wilayah');
+    Route::get('/project-by-wilayah-select/{id}', [ProjectModelController::class, 'by_wilayah_select'])->name('project-by-wilayah-select');
+    Route::get('/area-by-project/{id}', [AreaController::class, 'by_project'])->name('area-by-project');
 
     //Route Data Table
     Route::get('user-datatable', [UserController::class, 'datatable'])->name('user.datatable');
@@ -74,12 +84,18 @@ Route::group(['prefix' => 'super-admin', 'middleware' => ['auth', 'verified', 'r
     Route::get('project-datatable', [ProjectModelController::class, 'datatable'])->name('project.datatable');
     Route::get('aset-location-datatable', [AsetLocationController::class, 'datatable'])->name('aset-location.datatable');
     Route::get('hak-akses-datatable', [HakAksesController::class, 'datatable'])->name('hak-akses.datatable');
+    Route::get('check-point-aset.datatable', [CheckpointAsetController::class, 'datatable'])->name('check-point-aset.datatable');
+    
 
     //Guard
     Route::get('guard-datatable', [GuardController::class, 'datatable'])->name('guard.datatable');
 
     //Audit Log
     Route::get('audit-log-datatable', [AuditLogController::class, 'datatable'])->name('audit-log.datatable');
+
+    //Ajax hak akses
+    Route::post('get-hak-akses', [HakAksesController::class, 'get_hak_akses'])->name('get-hak-akses');
+
 
 
 });

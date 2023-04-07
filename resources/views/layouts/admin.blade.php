@@ -149,10 +149,10 @@
                                         <li><a href="{{ route('aset-location.index') }}" id="location_asset">Location Asset</a></li>
                                     </ul>
                                 </li>
-                                <li class="sidebar-list" id="menu-patrol"><a class="sidebar-link sidebar-title" href="#"><i data-feather="command"></i><span>Gate Access</span></a>
+                                <li class="sidebar-list" id="menu-gate"><a class="sidebar-link sidebar-title" href="#"><i data-feather="command"></i><span>Gate Access</span></a>
                                     <ul class="sidebar-submenu">
-                                        <li><a href="" id="sub-schedule">Schedule</a></li>
-                                        <li><a href="" id="sub-notice">Notice Boards</a></li>
+                                        <li><a href="{{ route('incoming-vehicle.index') }}" id="sub_incoming_vehichle">Incoming Vehicle</a></li>
+                                        <li><a href="{{ route('outcoming-vehicle.index') }}" id="sub-outcoming-vehichle">Outcoming Vehicle</a></li>
                                     </ul>
                                 </li>
                                 <li class="sidebar-list" id="menu-guard"><a class="sidebar-link sidebar-title" href="#"><i data-feather="layers"></i><span>Guard Management</span></a>
@@ -168,16 +168,16 @@
                                         <li><a href="{{ route('check-point.index') }}" id="sub-list-checkpoint">Checkpoint List</a></li>
                                     </ul>
                                 </li>
-                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="arrow-right-circle"></i><span>Round</span></a>
+                                <li class="sidebar-list" id="menu-checkpointaset"><a class="sidebar-link sidebar-title" href="#"><i data-feather="check-square"></i><span>Client Asset</span></a>
                                     <ul class="sidebar-submenu">
-                                        <li><a href="">Add Route</a></li>
-                                        <li><a href="">Route List</a></li>
+                                        <li><a href="{{ route('checkpoint-aset.create') }}" id="sub-checkpoint-aset">Add CheckAset</a></li>
+                                        <li><a href="{{ route('checkpoint-aset.index') }}" id="sub-checkpoint-aset-list">Asset CheckPoint</a></li>
                                     </ul>
                                 </li>
-                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="check-square"></i><span>Todolist</span></a>
+                                <li class="sidebar-list" id="menu-round"><a class="sidebar-link sidebar-title" href="#"><i data-feather="arrow-right-circle"></i><span>Round</span></a>
                                     <ul class="sidebar-submenu">
-                                        <li><a href="">Add Todolist</a></li>
-                                        <li><a href="">Todolist</a></li>
+                                        <li><a href="{{ route('round.create') }}" id="sub-round-create">Add Route</a></li>
+                                        <li><a href="{{ route('round.index') }}" id="sub-round-list">Route List</a></li>
                                     </ul>
                                 </li>
                                 <li class="sidebar-list active" id="menu-ai"><a class="sidebar-link sidebar-title active" href="#"><i data-feather="cpu"></i><span>AI CAPTURE</span></a>
@@ -190,6 +190,8 @@
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="flag"></i><span>Reporting</span></a>
                                     <ul class="sidebar-submenu">
                                         <li><a href="">Checkpoint Report</a></li>
+                                        <li><a href="">Shift Patrol Report</a></li>
+                                        <li><a href="">Self Patrol</a></li>
                                         <li><a href="">Asset Report</a></li>
                                     </ul>
                                 </li>

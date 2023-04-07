@@ -16,9 +16,13 @@ return new class extends Migration
 
         Schema::create('check_points', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->unique();
+            $table->string('nama');
+            $table->string('kode')->unique();
             $table->string('lokasi');
+            $table->enum('status',['aktif','non aktif']);
             $table->string('id_area');
+            $table->string('id_project');
+            $table->string('id_wilayah');
             $table->timestamps();
         });
     }

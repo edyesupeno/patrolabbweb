@@ -153,4 +153,35 @@ class ProjectModelController extends Controller
             "data" => [$html]
         ], 200);
     }
+
+
+    public function by_wilayah_select(Request $request, $id)
+    {
+        try {
+            $old = [];
+            if ($request->id_area) {
+                $old = explode(',', $request->id_area);
+            }
+            $data = Wilayah::find($id)->projects;
+            if ($data->count() <= 0) {
+                return response()->json([
+                    "status" => "false",
+                    "messege" => "gagal mengambil data project",
+                    "data" => []
+                ], 404);
+            }
+            $html = '';
+            foreach ($data as $item) {
+                $selected = in_array($item->id, $old) ? 'selected' : '';
+                $html .= '<option value="' . $item->id . '"' . $selected . '>' . $item->nama_project . '</option>';
+            }
+            return response()->json([
+                "status" => "true",
+                "messege" => "berhasil mengambil data project",
+                "data" => [$html]
+            ], 200);
+        } catch (\Throwable $th) {
+            Log::debug($th->getMessage());
+        }
+    }
 }

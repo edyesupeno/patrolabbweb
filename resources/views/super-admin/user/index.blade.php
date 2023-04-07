@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 @section('content')
 @component('components.dashboard.headpage')
-    @slot('title')
-        {{ $title }}
-    @endslot
-    @slot('bread')
-    <li class="breadcrumb-item">Data Master</li>
-    <li class="breadcrumb-item">{{ $title }}</li>
-    @endslot
+@slot('title')
+{{ $title }}
+@endslot
+@slot('bread')
+<li class="breadcrumb-item">Data Master</li>
+<li class="breadcrumb-item">{{ $title }}</li>
+@endslot
 @endcomponent
 <!-- Container-fluid starts-->
 <div class="container-fluid">
@@ -63,9 +63,9 @@
             },
             {
                 data: 'role',
-               render: function(data, type, row){
-                return '<span class="text-capitalize">'+row.role+'</span>'
-               }
+                render: function(data, type, row) {
+                    return '<span class="text-capitalize">' + row.role + '</span>'
+                }
             },
             {
                 data: 'created_at',
@@ -73,8 +73,12 @@
             },
             {
                 data: 'status',
-                render: function(data, type, row){
-                    return '<span class="text-capitalize text-nowrap">'+row.status+'</span>'
+                render: function(data, type, row) {
+                    if (row.status == 'aktif') {
+                        return '<span class="badge badge-success">' + row.status + '</span>'
+                    } else {
+                        return '<span class="badge badge-danger">' + row.status + '</span>'
+                    }
                 }
             },
             {

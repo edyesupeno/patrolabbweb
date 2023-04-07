@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
+use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class AreaController extends Controller
 {
@@ -138,5 +139,31 @@ class AreaController extends Controller
                 return $area->project->nama_project;
             })
             ->toJson();
+    }
+
+    public function by_project(Request $request, $id)
+    {
+        $old = [];
+        if ($request->id_area) {
+            $old = explode(',', $request->id_area);
+        }
+        $data = ProjectModel::find($id)->areas;
+        if ($data->count() <= 0) {
+            return response()->json([
+                "status" => "false",
+                "messege" => "gagal mengambil data Area",
+                "data" => []
+            ], 404);
+        }
+        $html = '';
+        foreach ($data as $item) {
+            $selected = in_array($item->id, $old) ? 'selected' : '';
+            $html .= '<option value="'.$item->id.'"'.$selected.'>'.$item->nama.'</option>';
+        }
+        return response()->json([
+            "status" => "true",
+            "messege" => "berhasil mengambil data Area",
+            "data" => [$html]
+        ], 200);
     }
 }

@@ -25,5 +25,10 @@ class ProjectModel extends Model
     {
         return $this->belongsToMany(Guard::class,'pivot_guard_projects','id_guard','id_project');
     }
+
+    public function checkpoints()
+    {
+        return $this->hasMany(CheckPoint::class, 'id_project');
+    }
     
 }
