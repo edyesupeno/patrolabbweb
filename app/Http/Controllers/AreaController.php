@@ -145,7 +145,7 @@ class AreaController extends Controller
     {
         $old = [];
         if ($request->id_area) {
-            $old = explode(',', $request->id_area);
+            $old = $request->id_area;
         }
         $data = ProjectModel::find($id)->areas;
         if ($data->count() <= 0) {
@@ -155,9 +155,9 @@ class AreaController extends Controller
                 "data" => []
             ], 404);
         }
-        $html = '';
+        $html = '<option value="" selected disabled>--Pilih--</option>';
         foreach ($data as $item) {
-            $selected = in_array($item->id, $old) ? 'selected' : '';
+            $selected = $item->id == $old ? 'selected' : '';
             $html .= '<option value="'.$item->id.'"'.$selected.'>'.$item->nama.'</option>';
         }
         return response()->json([

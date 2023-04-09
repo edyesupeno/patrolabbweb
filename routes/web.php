@@ -15,6 +15,7 @@ use App\Http\Controllers\WilayahController;
 use App\Http\Controllers\AuditLogController;
 use App\Http\Controllers\HakAksesController;
 use App\Http\Controllers\CheckPointController;
+use App\Http\Controllers\SelfPatrolController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\AsetPatroliController;
 use App\Http\Controllers\AiMasterDataController;
@@ -64,7 +65,8 @@ Route::group(['prefix' => 'super-admin', 'middleware' => ['auth', 'verified', 'r
         'incoming-vehicle' => IncomingVehicleController::class,
         'outcoming-vehicle' => OutcomingVehicleController::class,
         'round' => RoundController::class,
-        'checkpoint-aset' => CheckpointAsetController::class //route managemen controller client asset
+        'checkpoint-aset' => CheckpointAsetController::class,
+        'self-patrol' => SelfPatrolController::class
 
     ]);
 

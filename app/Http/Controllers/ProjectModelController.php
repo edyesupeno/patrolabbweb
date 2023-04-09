@@ -159,8 +159,8 @@ class ProjectModelController extends Controller
     {
         try {
             $old = [];
-            if ($request->id_area) {
-                $old = explode(',', $request->id_area);
+            if ($request->id_project) {
+                $old = $request->id_project;
             }
             $data = Wilayah::find($id)->projects;
             if ($data->count() <= 0) {
@@ -170,9 +170,9 @@ class ProjectModelController extends Controller
                     "data" => []
                 ], 404);
             }
-            $html = '';
+            $html = '<option value="" selected disabled>--Pilih--</option>';
             foreach ($data as $item) {
-                $selected = in_array($item->id, $old) ? 'selected' : '';
+                $selected = $item->id == $old ? 'selected' : '';
                 $html .= '<option value="' . $item->id . '"' . $selected . '>' . $item->nama_project . '</option>';
             }
             return response()->json([

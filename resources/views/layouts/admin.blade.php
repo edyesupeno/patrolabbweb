@@ -187,11 +187,11 @@
                                         <li><a href="">Register DPO</a></li>
                                     </ul>
                                 </li>
-                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="flag"></i><span>Reporting</span></a>
+                                <li class="sidebar-list" id="menu-report"><a class="sidebar-link sidebar-title" href="#"><i data-feather="flag"></i><span>Reporting</span></a>
                                     <ul class="sidebar-submenu">
                                         <li><a href="">Checkpoint Report</a></li>
                                         <li><a href="">Shift Patrol Report</a></li>
-                                        <li><a href="">Self Patrol</a></li>
+                                        <li><a href="{{ route('self-patrol.index') }}" id="sub-report-self-patrol" >Self Patrol</a></li>
                                         <li><a href="">Asset Report</a></li>
                                     </ul>
                                 </li>

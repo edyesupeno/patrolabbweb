@@ -46,6 +46,9 @@
                             <select class="form-select @error('id_project') is-invalid @enderror" name="id_project" onchange="get_area(this.value)" id="select-project">
                                 <option value="" selected disabled>--Pilih--</option>
                             </select>
+                            @error('id_project')
+                            <span class="text-danger d-block">{{ $message }}</span>
+                            @enderror
                             <span class="text-danger d-block" id="project-alert"></span>
                         </div>
                         <div class="mb-3">
@@ -53,6 +56,9 @@
                             <select class="form-select @error('id_area') is-invalid @enderror" name="id_area" id="select-area">
                                 <option value="" selected disabled>--Pilih--</option>
                             </select>
+                            @error('id_area')
+                            <span class="text-danger d-block">{{ $message }}</span>
+                            @enderror
                             <span class="text-danger d-block" id="area-alert"></span>
                         </div>
                         <div class="mb-3">
@@ -84,7 +90,7 @@
             url: "{{ url('/super-admin/project-by-wilayah-select') }}/" + id_wilayah,
             method: 'get',
             data: {
-                id_project: "{{ old('id_project') ? implode(',',old('id_project')) : '' }}"
+                id_project: "{{ old('id_project') }}"
             },
             //menghapus checkbox sebelumnya jika di select form lain
             beforeSend: function() {
@@ -113,7 +119,7 @@
             url: "{{ url('/super-admin/area-by-project') }}/" + id_project,
             method: 'get',
             data: {
-                id_area: "{{ old('id_area') ? implode(',',old('id_area')) : '' }}"
+                id_area: "{{ old('id_area')}}"
             },
             //menghapus checkbox sebelumnya jika di select form lain
             beforeSend: function() {
@@ -135,6 +141,18 @@
     }
     active_menu("#menu-checkpoint", "#sub-add-checkpoint")
 </script>
+
+@if(old('id_wilayah'))
+<script>
+    get_project("{{old('id_wilayah')}}")
+</script>
+@endif
+
+@if(old('id_project'))
+<script>
+    get_area("{{old('id_project')}}")
+</script>
+@endif
 
 @endpush
 @endsection

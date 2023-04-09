@@ -36,61 +36,74 @@
     <script src="{{ URL::asset("/sweetalert2/dist/sweetalert2.min.js") }}"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ URL::asset('/qrcodejs/qrcode.js') }}"></script>
     <!-- login js-->
+
     <script>
-        function hapus_data(event) {
-            let button = $(event.target)
-            let form_id = button.attr('form-id')
-            let form = $(form_id)
+        var qr_base = document.getElementById('qr_image')
+        var make_code = new QRCode(qr_base, '');
 
-            Swal.fire({
-                title: 'Anda yakin?',
-                text: "Data tidak bisa di kembalikan!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, hapus!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit()
-                }
-            })
-        }
+        function view_qr(kode) {
+            make_code.makeCode(kode)
+                $('#qr_modal').modal('show')
+            }
+            $("#qr_modal").on("hidden.bs.modal", function() {
+                make_code.clear();
+            });
 
-        for (let index = 0; index < 3; index++) {
-            $('#myselect' + index).select2();
+            function hapus_data(event) {
+                let button = $(event.target)
+                let form_id = button.attr('form-id')
+                let form = $(form_id)
 
-        }
+                Swal.fire({
+                    title: 'Anda yakin?',
+                    text: "Data tidak bisa di kembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit()
+                    }
+                })
+            }
 
-        function menu_active(base) {
-            let menus = $(base)
-            menus.find('a').addClass('active').click()
-        }
+            for (let index = 0; index < 3; index++) {
+                $('#myselect' + index).select2();
 
-        function active_menu(base, item) {
-            let menu = $(base)
-            menu.find(item).addClass('active')
-            menu.find('a').click()
-        }
+            }
 
-        function logout(id) {
-            let form = $(id)
-            //console.log(form)
-            Swal.fire({
-                title: 'Anda yakin Logout?',
-                text: "Keluar dari sistem",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, Logout!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit()
-                }
-            })
-        }
+            function menu_active(base) {
+                let menus = $(base)
+                menus.find('a').addClass('active').click()
+            }
+
+            function active_menu(base, item) {
+                let menu = $(base)
+                menu.find(item).addClass('active')
+                menu.find('a').click()
+            }
+
+            function logout(id) {
+                let form = $(id)
+                //console.log(form)
+                Swal.fire({
+                    title: 'Anda yakin Logout?',
+                    text: "Keluar dari sistem",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Logout!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit()
+                    }
+                })
+            }
     </script>
     <!-- Plugin used-->
     @if(session('success'))
@@ -115,6 +128,8 @@
         )
     </script>
 
+
     @endif
+
 
     @stack('js')

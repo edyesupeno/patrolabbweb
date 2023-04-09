@@ -9,7 +9,7 @@
             <div class="col-6">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"> <i data-feather="home"></i></a></li>
-                    <li class="breadcrumb-item">Area Checkpoint</li>
+                    <li class="breadcrumb-item">Self Patrol</li>
                     <li class="breadcrumb-item">{{ $title }}</li>
                 </ol>
             </div>
@@ -20,16 +20,12 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">
-            <div class="d-flex mb-3 justify-content-end">
-                <a href="{{route('check-point.create')}}" class="btn btn-success">Tambah Area CheckPoint</a>
-            </div>
-            <table id="mytable" class="display" style="width:100%">
+            <table id="#mytable" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th style="max-width: 40px;">No</th>
-                        <th>Nama CheckPoint</th>
-                        <th>Kode</th>
-                        <th>Lattitude</th>
+                        <th>Nama</th>
+                        <th>Jumlah Check Point</th>
                         <th>Status</th>
                         <th>Area</th>
                         <th>Project</th>
@@ -40,26 +36,7 @@
         </div>
     </div>
 </div>
-
-<!-- Modal Body -->
-<!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-<div class="modal fade" id="qr_modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
-        <div class="modal-content rounded-0">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalTitleId">QR Code</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div id="qr_image"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
+<!-- Container-fluid Ends-->
 @push('js')
 <script>
     $('#mytable').DataTable({
@@ -76,13 +53,7 @@
             },
             {
                 data: 'kode',
-                render: function(data, type, row) {
-                    let html = $('<div><span class="badge badge-success"></span></div>')
-                    html.find('span').attr('onclick', 'view_qr(\'' + row.kode + '\')')
-                        .text(row.kode)
-
-                    return html.html()
-                }
+                name: 'Nama CheckPoint'
             },
             {
                 data: 'lokasi',
@@ -112,7 +83,7 @@
             }
         ]
     });
-    active_menu("#menu-checkpoint", "#sub-list-checkpoint")
+    active_menu("#menu-report", "#sub-report-self-patrol")
 </script>
 
 @endpush
