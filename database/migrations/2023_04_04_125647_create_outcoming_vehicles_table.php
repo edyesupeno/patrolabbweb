@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('gate_code');
             $table->string('lokasi');
             $table->string('rfid_keluar');
+            $table->string('no_kartu');
             $table->string('plat');
             $table->string('pemilik_kartu');
             $table->enum('status', ['tamu', 'karyawan', 'petugas']);

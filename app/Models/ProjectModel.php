@@ -45,5 +45,10 @@ class ProjectModel extends Model
     {
         return $this->hasMany(incomingvehicle::class, 'id_project');
     }
+
+    public function outcomingvehicle()
+    {
+        return $this->hasMany(incomingvehicle::class, 'id_project');
+    }
     
 }

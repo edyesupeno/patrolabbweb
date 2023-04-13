@@ -36,4 +36,9 @@ class Area extends Model
     {
         return $this->hasMany(incomingvehicle::class, 'id_area');
     }
+
+    public function outcomingvehicle()
+    {
+        return $this->hasMany(incomingvehicle::class, 'id_area');
+    }
 }

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Throwable;
 use Illuminate\Http\Request;
+use App\Models\IncomingVehicle;
 use App\Models\OutcomingVehicle;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
 class OutcomingVehicleController extends Controller
@@ -14,7 +16,7 @@ class OutcomingVehicleController extends Controller
     public function index()
     {
         $data['title'] = 'Daftar Kendaraan Keluar';
-        $data['outcoming_vehicle'] = OutcomingVehicle::all();
+        //$data['outcoming_vehicle'] = OutcomingVehicle::all();
         return view('super-admin.outcoming_vehicle.index', $data);
     }
 
@@ -106,5 +108,20 @@ class OutcomingVehicleController extends Controller
             Log::debug('IncomingVehicleController destroy() ' . $e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
         }
+    }
+
+    public function datatable()
+    {
+        $data = OutcomingVehicle::all();
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->escapeColumns('active')
+            ->addColumn('no_kartu', '{{$no_kartu}}')
+            ->addColumn('plat', '{{$plat}}')
+            ->addColumn('pemilik', '{{$pemilik_kartu}}')
+            ->addColumn('status', '{{$status}}')
+            ->addColumn('tanggal_keluar', '{{$tanggal_keluar}}')
+            ->addColumn('foto_keluar', '{{$foto_keluar}}')
+            ->toJson();
     }
 }

@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ShiftSeeder::class);
         $this->call(AtensiSeeder::class);
         $this->call(IncomingVehicleSeeder::class);
+        $this->call(OutcomingVehicleSeeder::class);
         
        
     }
