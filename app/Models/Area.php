@@ -21,4 +21,14 @@ class Area extends Model
     {
         return $this->hasMany(CheckPoint::class, 'id_area');
     }
+
+    public function selfpatrols()
+    {
+        return $this->hasMany(SelfPatrol::class, 'id_area');
+    }
+
+    public function atensis()
+    {
+        return $this->hasMany(Atensi::class, 'id_area');
+    }
 }

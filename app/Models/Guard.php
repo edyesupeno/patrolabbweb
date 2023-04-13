@@ -25,4 +25,9 @@ class Guard extends Model
     }
 
     protected $with = ['projects'];
+
+    public function selfpatrols()
+    {
+        return $this->hasMany(SelfPatrol::class, 'id_guard');
+    }
 }

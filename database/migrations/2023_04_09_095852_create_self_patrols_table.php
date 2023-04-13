@@ -11,6 +11,9 @@ return new class extends Migration
         Schema::create('self_patrol', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_guard');
+            $table->foreignId('id_wilayah');
+            $table->foreignId('id_project');
+            $table->foreignId('id_area');
             $table->date('tanggal');
             $table->enum('status_lokasi',['aman','kebakaran','pencurian','lain-lain']);
             $table->string('deskripsi');

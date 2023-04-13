@@ -23,4 +23,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('me',[AuthController::class,'me'])->name('me.api');
     Route::post('self-patrol', [SelfPatrolController::class, 'store'])->name('self-patrol.store');
     Route::post('atensi', [AtensiController::class, 'store'])->name('atensi.store');
+    Route::get('atensi-all', [AtensiController::class, 'all_data'])->name('atensi.all');
+    Route::get('atensi/{id_user}', [AtensiController::class, 'data_per_user'])->name('atensi.per.user');
 });

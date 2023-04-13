@@ -140,7 +140,7 @@
                                 <li class="sidebar-list" id="menu-patrol"><a class="sidebar-link sidebar-title" href="#"><i data-feather="shield"></i><span>Patrol</span></a>
                                     <ul class="sidebar-submenu">
                                         <li><a href="" id="sub-schedule">Schedule</a></li>
-                                        <li><a href="" id="sub-notice">Notice Boards</a></li>
+                                        <li><a href="{{ route('atensi.index') }}" id="sub-notice">Notice Boards</a></li>
                                     </ul>
                                 </li>
                                 <li class="sidebar-list" id="menu_aset"><a class="sidebar-link sidebar-title" href="#"><i data-feather="truck"></i><span>Asset Management</span></a>
@@ -191,7 +191,7 @@
                                     <ul class="sidebar-submenu">
                                         <li><a href="">Checkpoint Report</a></li>
                                         <li><a href="">Shift Patrol Report</a></li>
-                                        <li><a href="{{ route('self-patrol.index') }}" id="sub-report-self-patrol" >Self Patrol</a></li>
+                                        <li><a href="{{ route('self-patrol.index') }}" id="sub-report-self-patrol">Self Patrol</a></li>
                                         <li><a href="">Asset Report</a></li>
                                     </ul>
                                 </li>

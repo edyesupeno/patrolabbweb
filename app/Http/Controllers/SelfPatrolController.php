@@ -7,6 +7,7 @@ use App\Models\SelfPatrol;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
 class SelfPatrolController extends Controller
@@ -46,6 +47,9 @@ class SelfPatrolController extends Controller
             $validator = Validator::make($request->all(), 
             [
                 'id_guard' => ['required', 'numeric'],
+                'id_wilayah' => ['required', 'numeric'],
+                'id_wilayah' => ['required', 'numeric'],
+                'id_area' => ['required', 'numeric'],
                 'tanggal' => ['required'],
                 'status_lokasi' => ['required', 'in:aman,kebakaran,pencurian,lain-lain'],
                 'deskripsi' => ['required'],
@@ -143,4 +147,30 @@ class SelfPatrolController extends Controller
     {
         //
     }
+
+    public function datatable()
+    {
+        $data = SelfPatrol::all();
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->escapeColumns('active')
+            ->addColumn('petugas', function (SelfPatrol $selfpatrols) {
+                return $selfpatrols->petugas->nama;
+            })
+            ->addColumn('wilayah', function (SelfPatrol $selfpatrols) {
+                return $selfpatrols->wilayah->nama;
+            })
+            ->addColumn('project', function (SelfPatrol $selfpatrols) {
+                return $selfpatrols->project->nama_project;
+            })
+            ->addColumn('area', function (SelfPatrol $selfpatrols) {
+                return $selfpatrols->area->nama;
+            })
+            ->addColumn('tanggal', '{{$tanggal}}')
+            ->addColumn('status', '{{$status_lokasi}}')
+            ->addColumn('deskripsi', '{{$deskripsi}}')
+            ->addColumn('foto', '{{$foto}}')
+            ->toJson();
+    }
+
 }

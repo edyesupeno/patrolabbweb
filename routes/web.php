@@ -9,6 +9,7 @@ use App\Http\Controllers\GuardController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\RoundController;
 use App\Http\Controllers\ShiftController;
+use App\Http\Controllers\AtensiController;
 use App\Http\Controllers\ApiDocsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WilayahController;
@@ -66,7 +67,8 @@ Route::group(['prefix' => 'super-admin', 'middleware' => ['auth', 'verified', 'r
         'outcoming-vehicle' => OutcomingVehicleController::class,
         'round' => RoundController::class,
         'checkpoint-aset' => CheckpointAsetController::class,
-        'self-patrol' => SelfPatrolController::class
+        'self-patrol' => SelfPatrolController::class,
+        'atensi' => AtensiController::class
 
     ]);
 
@@ -86,7 +88,10 @@ Route::group(['prefix' => 'super-admin', 'middleware' => ['auth', 'verified', 'r
     Route::get('project-datatable', [ProjectModelController::class, 'datatable'])->name('project.datatable');
     Route::get('aset-location-datatable', [AsetLocationController::class, 'datatable'])->name('aset-location.datatable');
     Route::get('hak-akses-datatable', [HakAksesController::class, 'datatable'])->name('hak-akses.datatable');
+    Route::get('user-datatable', [UserController::class, 'datatable'])->name('user.datatable');
     Route::get('check-point-aset.datatable', [CheckpointAsetController::class, 'datatable'])->name('check-point-aset.datatable');
+    Route::get('atensi-datatable', [AtensiController::class, 'datatable'])->name('atensi.datatable');
+    Route::get('self-patrol-datatable', [SelfPatrolController::class, 'datatable'])->name('self-patrol.datatable');
     
 
     //Guard

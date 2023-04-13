@@ -26,5 +26,14 @@ class Wilayah extends Model
     {
         return $this->hasMany(CheckPoint::class, 'id_wilayah');
     }
+    public function selfpatrols()
+    {
+        return $this->hasMany(SelfPatrol::class, 'id_wilayah');
+    }
+
+    public function atensis()
+    {
+        return $this->hasMany(Atensi::class, 'id_wilayah');
+    }
 }
 

@@ -49,4 +49,9 @@ class User extends Authenticatable
         'data_guard.projects',
         'data_guard.area'
     ];
+
+    public function atensis()
+    {
+        return $this->hasMany(Atensi::class, 'id_user');
+    }
 }

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Throwable;
+use App\Models\User;
 use App\Models\Atensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
 class AtensiController extends Controller
@@ -18,7 +20,31 @@ class AtensiController extends Controller
      */
     public function index()
     {
-        //
+        $data['title'] = 'Atensi';
+        $data['atensi'] = Atensi::all();
+        return view('super-admin.atensi.index', $data);
+    }
+
+    public function all_data(){
+        $data['atensi'] = Atensi::all();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'berhasil menampilkan data',
+            'data' => $data
+        ], 200);
+
+    }
+
+    public function data_per_user($id_user)
+    {
+       $data = Atensi::where('id_user', $id_user)->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'berhasil menampilkan data',
+            'data' => $data
+        ], 200);
     }
 
     /**
@@ -45,6 +71,9 @@ class AtensiController extends Controller
                 $request->all(),
                 [
                     'id_user' => ['required', 'numeric'],
+                    'id_wilayah' => ['required', 'numeric'],
+                    'id_project' => ['required', 'numeric'],
+                    'id_area' => ['required', 'numeric'],
                     'judul_atensi' => ['required'],
                     'prioritas' => ['required','in:high,medium,low'],
                     'tanggal_mulai' => ['required'],
@@ -125,5 +154,31 @@ class AtensiController extends Controller
     public function destroy(Atensi $atensi)
     {
         //
+    }
+
+    public function datatable()
+    {
+        $data = Atensi::all();
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->escapeColumns('active')
+            ->addColumn('user', function (Atensi $atensis) {
+                return $atensis->user->name;
+            })
+            ->addColumn('judul', '{{$judul_atensi}}')
+            ->addColumn('prioritas', '{{$prioritas}}')
+            ->addColumn('wilayah', function (Atensi $atensis) {
+                return $atensis->wilayah->nama;
+            })
+            ->addColumn('project', function (Atensi $atensis) {
+                return $atensis->project->nama_project;
+            })
+            ->addColumn('area', function (Atensi $atensis) {
+                return $atensis->area->nama;
+            })
+            ->addColumn('mulai', '{{$tanggal_mulai}}')
+            ->addColumn('selesai', '{{$tanggal_selesai}}')
+            ->addColumn('deskripsi', '{{$deskripsi}}')
+            ->toJson();
     }
 }
