@@ -40,5 +40,10 @@ class ProjectModel extends Model
     {
         return $this->hasMany(Atensi::class, 'id_project');
     }
+
+    public function incomingvehicle()
+    {
+        return $this->hasMany(incomingvehicle::class, 'id_project');
+    }
     
 }

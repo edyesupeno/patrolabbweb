@@ -10,13 +10,16 @@ return new class extends Migration
     {
         Schema::create('outcoming_vehicle', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_wilayah');
+            $table->foreignId('id_project');
+            $table->foreignId('id_area');
             $table->string('gate_code');
             $table->string('lokasi');
             $table->string('rfid_keluar');
             $table->string('plat');
             $table->string('pemilik_kartu');
-            $table->string('status');
-            $table->string('tanggal_keluar');
+            $table->enum('status', ['tamu', 'karyawan', 'petugas']);
+            $table->dateTime('tanggal_keluar');
             $table->string('foto_keluar');
             $table->timestamps();
         });

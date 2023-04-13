@@ -22,5 +22,11 @@ class WilayahSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        Wilayah::create([
+            'kode' => 'WIL002',
+            'nama' => 'JAKARTA',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }

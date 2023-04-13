@@ -27,6 +27,12 @@ class DatabaseSeeder extends Seeder
         $this->call(ProjectSeeder::class);
         $this->call(AreaSeeder::class);
         $this->call(GuardSeeder::class);
+        $this->call(SelfPatrolSeeder::class);
+        $this->call(AsetSeeder::class);
+        $this->call(ShiftSeeder::class);
+        $this->call(AtensiSeeder::class);
+        $this->call(IncomingVehicleSeeder::class);
+        
        
     }
 }

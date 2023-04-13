@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Throwable;
 use Illuminate\Http\Request;
+use App\Models\IncomingVehicle;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
-use App\Models\IncomingVehicle;
-use Throwable;
 
 class IncomingVehicleController extends Controller
 {
@@ -107,4 +108,20 @@ class IncomingVehicleController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
+    public function datatable()
+    {
+        $data = IncomingVehicle::all();
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->escapeColumns('active')
+            ->addColumn('no_kartu', '{{$no_kartu}}')
+            ->addColumn('plat', '{{$plat}}')
+            ->addColumn('pemilik', '{{$pemilik_kartu}}')
+            ->addColumn('status', '{{$status}}')
+            ->addColumn('tanggal_masuk', '{{$tanggal_masuk}}')
+            ->addColumn('foto_masuk', '{{$foto_masuk}}')
+            ->toJson();
+    }
+
 }

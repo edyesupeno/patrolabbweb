@@ -16,7 +16,8 @@ class GuardSeeder extends Seeder
      */
     public function run()
     {
-        $guard = Guard::create([
+        $guard = 
+        Guard::create([
             'no_badge' => '123456',
             'nama' => 'AGUS',
             'ttl' => '1990-01-01',
@@ -29,6 +30,21 @@ class GuardSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        Guard::create([
+            'no_badge' => '654321',
+            'nama' => 'YUDI',
+            'ttl' => '1990-01-01',
+            'jenis_kelamin' => 'laki-laki',
+            'email' => 'yudi@gmail.com',
+            'wa' => '0812431313',
+            'alamat' => 'Jl. Rumah',
+            'id_wilayah' => 1,
+            'id_area' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
         PivotGuardProject::create([
             'id_guard' => $guard->id,
             'id_project' => 1

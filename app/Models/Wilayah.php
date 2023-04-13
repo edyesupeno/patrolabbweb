@@ -35,5 +35,10 @@ class Wilayah extends Model
     {
         return $this->hasMany(Atensi::class, 'id_wilayah');
     }
+
+    public function incomingvehicle()
+    {
+        return $this->hasMany(incomingvehicle::class, 'id_wilayah');
+    }
 }
 

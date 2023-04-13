@@ -31,4 +31,9 @@ class Area extends Model
     {
         return $this->hasMany(Atensi::class, 'id_area');
     }
+
+    public function incomingvehicle()
+    {
+        return $this->hasMany(incomingvehicle::class, 'id_area');
+    }
 }

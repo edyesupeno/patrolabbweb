@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode')->unique();
             $table->string('nama');
-            $table->string('status');
+            $table->enum('status',['aktif','tidak aktif']);
             $table->timestamps();
         });
     }

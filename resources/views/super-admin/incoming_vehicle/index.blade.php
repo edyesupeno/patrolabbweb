@@ -61,7 +61,7 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <table id="#mytable" style="width:100%">
+                <table id="mytable" style="width:100%">
                     <thead>
                         <tr>
                             <th class="text-nowrap" style="width:30px">No</th>
@@ -95,50 +95,40 @@
     $('#mytable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('audit-log.datatable') }}",
+        ajax: "{{ route('incoming-vehicle.datatable') }}",
         columns: [{
                 data: 'DT_RowIndex',
                 name: 'No'
             },
             {
-                data: 'activity',
-                name: 'activity'
+                data: 'no_kartu',
+                name: ''
             },
             {
-                data: 'subject',
-                name: 'subject'
+                data: 'plat',
+                name: ''
             },
             {
-                data: 'causer',
-                name: 'causer'
+                data: 'pemilik',
+                name: ''
             },
             {
-                data: 'role_causer',
-                name: 'role_causer'
-            },
-            {
-                data: 'note',
-                name: 'note'
-            },
-            {
-                data: 'date',
-                name: 'date'
-            },
-            {
-                data: 'time',
-                name: 'time'
-            },
-            {
-                name: "Action",
+                data: 'status',
                 render: function(data, type, row) {
-                    let html = $('#actionbase').clone()
-                    html = html.find('.d-flex')
-                    html.find('a').attr('href', row.action.editurl)
-                    let form = html.find('form').attr('action', row.action.deleteurl)
-                        .attr('id', 'delete_form' + row.id)
-                    form.find('button').attr('form-id', '#delete_form' + row.id)
-                    return html.html()
+                    if (row.status == 'karyawan') {
+                        return '<span class="badge badge-success">' + row.status + '</span>'
+                    } else {
+                        return '<span class="badge badge-danger">' + row.status + '</span>'
+                    }
                 }
+            },
+            {
+                data: 'tanggal_masuk',
+                name: ''
+            },
+            {
+                data: 'foto_masuk',
+                name: ''
             }
         ]
     });

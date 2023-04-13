@@ -21,5 +21,17 @@ class ProjectSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        ProjectModel::create([
+            'nama_project' => 'PERTAMINA',
+            'wilayah' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        ProjectModel::create([
+            'nama_project' => 'PARKIR 1',
+            'wilayah' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }
