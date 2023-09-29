@@ -11,9 +11,9 @@ class CheckPoint extends Model
     protected $guarded = ['id'];
     protected $table = 'checkpoint';
 
-    public function wilayah()
+    public function round()
     {
-        return $this->belongsTo(Wilayah::class, 'id_wilayah');
+        return $this->belongsTo(Round::class, 'round_id');
     }
     public function project()
     {

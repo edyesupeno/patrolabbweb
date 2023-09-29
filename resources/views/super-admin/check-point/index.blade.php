@@ -31,9 +31,8 @@
                         <th>Kode</th>
                         <th>Lattitude</th>
                         <th>Status</th>
-                        <th>Area</th>
-                        <th>Project</th>
-                        <th>Wilayah</th>
+                        <th>Danger Status</th>
+                        <th>Nama Round</th>
                     </tr>
                 </thead>
             </table>
@@ -71,27 +70,27 @@
                 name: 'No'
             },
             {
-                data: 'nama',
+                data: 'name',
                 name: 'Nama CheckPoint'
             },
             {
-                data: 'kode',
+                data: 'qr_code',
                 render: function(data, type, row) {
                     let html = $('<div><span class="badge badge-success"></span></div>')
-                    html.find('span').attr('onclick', 'view_qr(\'' + row.kode + '\')')
-                        .text(row.kode)
+                    html.find('span').attr('onclick', 'view_qr(\'' + row.qr_code + '\')')
+                        .text(row.qr_code)
 
                     return html.html()
                 }
             },
             {
-                data: 'lokasi',
+                data: 'location_long_lat',
                 name: 'Nama CheckPoint'
             },
             {
                 data: 'status',
                 render: function(data, type, row) {
-                    if (row.status == 'aktif') {
+                    if (row.status == 'ACTIVED') {
                         return '<span class="badge badge-success">' + row.status + '</span>'
                     } else {
                         return '<span class="badge badge-danger">' + row.status + '</span>'
@@ -99,17 +98,24 @@
                 }
             },
             {
-                data: 'id_area',
-                name: 'Nama Area'
+                data: 'danger_status',
+                // name: 'Danger Status'
+
+                render: function(data, type, row) {
+                    if (row.danger_status == 'LOW') {
+                        return '<span class="badge badge-success">' + row.danger_status + '</span>'
+                    } else if (row.danger_status == 'MIDDLE') {
+                        return '<span class="badge badge-warning">' + row.danger_status + '</span>'
+                    }
+                    else {
+                        return '<span class="badge badge-danger">' + row.danger_status + '</span>'
+                    }
+                }
             },
             {
-                data: 'id_project',
-                name: 'Nama Project'
+                data: 'id_round',
+                name: 'Nama Round'
             },
-            {
-                data: 'id_wilayah',
-                name: 'Nama Wilayah'
-            }
         ]
     });
     active_menu("#menu-checkpoint", "#sub-list-checkpoint")
