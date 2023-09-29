@@ -23,16 +23,16 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(PermissionSeeder::class);
         $this->call(UserSeeder::class);
-        $this->call(WilayahSeeder::class);
-        $this->call(ProjectSeeder::class);
-        $this->call(AreaSeeder::class);
-        $this->call(GuardSeeder::class);
-        $this->call(SelfPatrolSeeder::class);
-        $this->call(AsetSeeder::class);
-        $this->call(ShiftSeeder::class);
-        $this->call(AtensiSeeder::class);
-        $this->call(IncomingVehicleSeeder::class);
-        $this->call(OutcomingVehicleSeeder::class);
+        // $this->call(WilayahSeeder::class);
+        // $this->call(ProjectSeeder::class);
+        // $this->call(AreaSeeder::class);
+        // $this->call(GuardSeeder::class);
+        // $this->call(SelfPatrolSeeder::class);
+        // $this->call(AsetSeeder::class);
+        // $this->call(ShiftSeeder::class);
+        // $this->call(AtensiSeeder::class);
+        // $this->call(IncomingVehicleSeeder::class);
+        // $this->call(OutcomingVehicleSeeder::class);
         
        
     }

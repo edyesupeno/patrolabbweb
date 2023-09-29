@@ -42,9 +42,9 @@ $section = 'wilayah';
                         @foreach ($shift as $item)
                         <tr>
                             <td class="text-nowrap">{{ $loop->iteration }}</td>
-                            <td class="text-nowrap">{{ $item->nama }}</td>
-                            <td class="text-nowrap">{{ $item->mulai }}</td>
-                            <td class="text-nowrap">{{ $item->selesai }}</td>
+                            <td class="text-nowrap">{{ $item->name }}</td>
+                            <td class="text-nowrap">{{ $item->start_time }}</td>
+                            <td class="text-nowrap">{{ $item->end_time }}</td>
                             <td class="text-nowrap">
                                 <div class="d-flex">
                                     <a href="{{ route('shift.edit',$item->id) }}" class="btn btn-warning me-2">Edit</a>
