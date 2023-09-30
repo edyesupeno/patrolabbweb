@@ -139,8 +139,8 @@ class GuardController extends Controller
         return DataTables::of($data)
             ->addIndexColumn()
             ->escapeColumns('active')
-            ->addColumn('no_badge', '{{$no_badge}}')
-            ->addColumn('nama', '{{$nama}}')
+            ->addColumn('no_badge', '{{$badge_number}}')
+            ->addColumn('nama', '{{$name}}')
             ->addColumn('email', '{{$email}}')
             ->addColumn('created_at', function (Guard $guard) {
                 return date('d M y', strtotime($guard->created_at));

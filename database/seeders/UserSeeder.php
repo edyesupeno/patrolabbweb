@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'name' => 'super-admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123456'),
+            'status' => 'ACTIVED',
         ]);
 
         $user = User::create([
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
             'no_badge' => '123456',
             'email' => 'agus@gmail.com',
             'password' => Hash::make('123456'),
+            'status' => 'ACTIVED',
         ]);
 
         $super_admin->assignRole('super-admin');

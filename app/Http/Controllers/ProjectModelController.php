@@ -110,9 +110,10 @@ class ProjectModelController extends Controller
         return DataTables::of($data)
             ->addIndexColumn()
             ->escapeColumns('active')
-            ->addColumn('nama_project', '{{$nama_project}}')
+            ->addColumn('nama_project', '{{$name}}')
             ->addColumn('wilayah', function (ProjectModel $project) {
-                return $project->data_wilayah->nama;
+                return $project->data_wilayah->name;
+                // dd($project);
             })
             ->addColumn('action', function (ProjectModel $project) {
                 $data = [

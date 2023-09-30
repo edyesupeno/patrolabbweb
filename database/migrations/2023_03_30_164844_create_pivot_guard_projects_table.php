@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pivot_guard_projects', function (Blueprint $table) {
             $table->foreignId('id_guard')->constrained('guards')->onDelete('cascade');
-            $table->foreignId('id_project')->constrained('project_model')->onDelete('cascade');
+            $table->foreignId('id_project')->constrained('projects')->onDelete('cascade');
             $table->timestamps();
         });
     }

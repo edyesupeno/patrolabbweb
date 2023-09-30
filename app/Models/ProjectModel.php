@@ -9,11 +9,11 @@ class ProjectModel extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    protected $table = 'project_model';
+    protected $table = 'projects';
 
     public function data_wilayah()
     {
-        return $this->belongsTo(Wilayah::class, 'wilayah');
+        return $this->belongsTo(Wilayah::class, 'city_id');
     }
 
     public function areas()

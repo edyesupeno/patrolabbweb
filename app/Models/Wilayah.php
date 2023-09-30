@@ -9,6 +9,8 @@ class Wilayah extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    // protected $table = 'wilayahs';
+    protected $table = 'city';
 
     public function areas(){
         return $this->hasMany(Area::class,'id_wilayah');

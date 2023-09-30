@@ -92,8 +92,8 @@ class AsetController extends Controller
         return DataTables::of($data)
             ->addIndexColumn()
             ->escapeColumns('active')
-            ->addColumn('kode', '{{$kode}}')
-            ->addColumn('nama', '{{$nama}}')
+            ->addColumn('kode', '{{$code}}')
+            ->addColumn('nama', '{{$name}}')
             ->addColumn('status', '{{$status}}')
             ->addColumn('action', function (Aset $aset) {
                 $data = [

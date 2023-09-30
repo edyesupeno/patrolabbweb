@@ -9,6 +9,7 @@ class Guard extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    protected $table = 'guards';
 
     public function user(){
         return $this->hasOne(User::class,'guard_id');

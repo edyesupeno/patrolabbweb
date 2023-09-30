@@ -9,5 +9,5 @@ class Round extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    protected $table = 'round';
+    protected $table = 'rounds';
 }
