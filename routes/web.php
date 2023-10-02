@@ -25,6 +25,7 @@ use App\Http\Controllers\ProjectModelController;
 use App\Http\Controllers\CheckpointAsetController;
 use App\Http\Controllers\IncomingVehicleController;
 use App\Http\Controllers\OutcomingVehicleController;
+use App\Http\Controllers\CheckpointReportController;
 use App\Models\IncomingVehicle;
 
 /*
@@ -69,7 +70,8 @@ Route::group(['prefix' => 'super-admin', 'middleware' => ['auth', 'verified', 'r
         'round' => RoundController::class,
         'checkpoint-aset' => CheckpointAsetController::class,
         'self-patrol' => SelfPatrolController::class,
-        'atensi' => AtensiController::class
+        'atensi' => AtensiController::class,
+        'checkpoint-report' => CheckpointReportController::class,
 
     ]);
 
@@ -93,6 +95,7 @@ Route::group(['prefix' => 'super-admin', 'middleware' => ['auth', 'verified', 'r
     Route::get('check-point-aset.datatable', [CheckpointAsetController::class, 'datatable'])->name('check-point-aset.datatable');
     Route::get('atensi-datatable', [AtensiController::class, 'datatable'])->name('atensi.datatable');
     Route::get('self-patrol-datatable', [SelfPatrolController::class, 'datatable'])->name('self-patrol.datatable');
+    Route::get('checkpoint-report-datatable', [CheckpointReportController::class, 'datatable'])->name('checkpoint-report.datatable');
     Route::get('incoming-vehicle.datatable', [IncomingVehicleController::class, 'datatable'])->name('incoming-vehicle.datatable');
     Route::get('outcoming-vehicle.datatable', [OutcomingVehicleController::class, 'datatable'])->name('outcoming-vehicle.datatable');
     
