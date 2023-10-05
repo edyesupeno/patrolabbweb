@@ -14,11 +14,11 @@ class Guard extends Model
     public function user(){
         return $this->hasOne(User::class,'guard_id');
     }
-    public function wilayah(){
-        return $this->belongsTo(Wilayah::class,'id_wilayah');
+    public function shift(){
+        return $this->belongsTo(Shift::class,'shift_id');
     }
-    public function area(){
-        return $this->belongsTo(Area::class,'id_area');
+    public function pleton(){
+        return $this->belongsTo(Pleton::class,'pleton_id');
     }
     public function projects()
     {

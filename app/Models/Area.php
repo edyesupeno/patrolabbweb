@@ -9,9 +9,10 @@ class Area extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    protected $table = 'areas';
 
     public function project(){
-        return $this->belongsTo(ProjectModel::class,'id_project');
+        return $this->belongsTo(ProjectModel::class,'project_id');
     }
     public function data_guards(){
         return $this->hasMany(Area::class,'id_area');

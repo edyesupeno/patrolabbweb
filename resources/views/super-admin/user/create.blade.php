@@ -38,7 +38,7 @@
                                     <option value="" selected disabled>--Pilih--</option>
                                     @foreach ($guard as $item)
                                         <option value="{{ $item->id }}"
-                                            {{ old('guard_id') == $item->id ? 'selected' : '' }}>{{ $item->nama }}
+                                            {{ old('guard_id') == $item->id ? 'selected' : '' }}>{{ $item->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -46,7 +46,7 @@
                                     <span class="text-danger d-block">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label for="role" class="form-label">Pilih Hak Akses <span
                                         class="text-danger">*</span></label>
                                 <div class="row row-cols-1 row-cols-lg-3">
@@ -65,7 +65,7 @@
                                 @error('role')
                                     <span class="text-danger d-block">{{ $message }}</span>
                                 @enderror
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
@@ -80,8 +80,8 @@
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
                                 <select class="form-select @error('status') is-invalid @enderror" name="status" id="status">
-                                    <option value="aktif" {{ old('status') == 'aktif' ? 'selected' : '' }}>Aktif</option>
-                                    <option value="tidak aktif" {{ old('status') == 'tidak aktif' ? 'selected' : '' }}>Tidak Aktif</option>
+                                    <option value="ACTIVED" {{ old('status') == 'ACTIVED' ? 'selected' : '' }}>Aktif</option>
+                                    <option value="INACTIVED" {{ old('status') == 'INACTIVED' ? 'selected' : '' }}>Tidak Aktif</option>
                                 </select>
                                 @error('status')<span class="text-danger d-block">{{ $message }}</span>@enderror
                             </div>

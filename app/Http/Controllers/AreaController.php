@@ -56,9 +56,10 @@ class AreaController extends Controller
             // ]);
             $validator = Validator::make($request->all(),
                 [
-                    'kode' => ['required', 'unique:areas'],
-                    'nama' => ['required', 'string'],
-                    'id_project' => ['required', 'numeric']
+                    'code' => ['required', 'unique:areas'],
+                    'name' => ['required', 'string'],
+                    'img_location' => ['required', 'string'],
+                    'project_id' => ['required', 'numeric']
                 ]
                 );
 
@@ -133,10 +134,11 @@ class AreaController extends Controller
         return DataTables::of($data)
             ->addIndexColumn()
             ->escapeColumns('active')
-            ->addColumn('kode', '{{$kode}}')
-            ->addColumn('nama', '{{$nama}}')
-            ->addColumn('project', function(Area $area){
-                return $area->project->nama_project;
+            ->addColumn('code', '{{$code}}')
+            ->addColumn('name', '{{$name}}')
+            ->addColumn('img_location', '{{$img_location}}')
+            ->addColumn('project_id', function(Area $area){
+                return $area->project->name;
             })
             ->toJson();
     }

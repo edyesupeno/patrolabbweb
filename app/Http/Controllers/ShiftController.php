@@ -29,9 +29,9 @@ class ShiftController extends Controller
         try {
             DB::beginTransaction();
             $validator = Validator::make($request->all(), [
-                'nama' => 'required',
-                'mulai' => 'required',
-                'selesai' => 'required',
+                'name' => 'required',
+                'start_time' => 'required',
+                'end_time' => 'required',
             ]);
 
             if ($validator->fails()) {
@@ -68,9 +68,9 @@ class ShiftController extends Controller
         try {
             DB::beginTransaction();
             $validator = Validator::make($request->all(), [
-                'nama' => 'required',
-                'mulai' => 'required',
-                'selesai' => 'required',
+                'name' => 'required',
+                'start_time' => 'required',
+                'end_time' => 'required',
             ]);
 
             if ($validator->fails()) {

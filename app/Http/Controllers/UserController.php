@@ -53,9 +53,9 @@ class UserController extends Controller
             DB::beginTransaction();
             $validator = Validator::make($request->all(), [
                 'guard_id' => 'required|numeric',
-                'role' => 'required',
+                // 'role' => 'required',
                 'password' => 'required',
-                'status'=>'required|in:aktif,tidak aktif'
+                'status'=>'required|in:ACTIVED,INACTIVED'
             ]);
 
             if ($validator->fails()) {
@@ -65,17 +65,17 @@ class UserController extends Controller
             $guard = Guard::find($request->guard_id);
             $data_user = [
                 'guard_id' => $guard->id,
-                'name' => $guard->nama,
-                'no_badge' => $guard->no_badge,
+                'name' => $guard->name,
+                'no_badge' => $guard->badge_number,
                 'email' => $guard->email,
                 'password' => bcrypt($request->password),
                 'status'=>$request->status
             ];
             $usr = User::create($data_user);
             $usr->assignRole('user');
-            foreach ($request->role as $item) {
-                $usr->assignRole($item);
-            }
+            // foreach ($request->role as $item) {
+            //     $usr->assignRole($item);
+            // }
             DB::commit();
             return redirect()->route('user.index')->with('success', 'Data Berhasil Ditambahkan');
         } catch (Throwable $e) {
@@ -105,11 +105,12 @@ class UserController extends Controller
     public function edit($id)
     {
         $data['title'] = "Edit User";
-        $data['guard'] = Guard::doesntHave('user')->get();
-        $data['role'] = Role::where('name', '!=', 'super-admin')
-            ->where('name', '!=', 'user')
-            ->get();
+        // $data['guard'] = Guard::doesntHave('user')->get();
+        // $data['role'] = Role::where('name', '!=', 'super-admin')
+        //     ->where('name', '!=', 'user')
+        //     ->get();
         $data['user'] = User::find($id);
+        // dd($data);
         return view('super-admin.user.edit', $data);
     }
 
@@ -125,9 +126,9 @@ class UserController extends Controller
         try {
             DB::beginTransaction();
             $validator = Validator::make($request->all(), [
-                'role' => 'required',
+                // 'role' => 'required',
                 'password' => 'nullable',
-                'status'=>'required|in:aktif,tidak aktif'
+                'status'=>'required|in:ACTIVED,INACTIVED'
             ]);
 
             if ($validator->fails()) {
@@ -136,12 +137,12 @@ class UserController extends Controller
             $validator->validated();
 
             $usr = User::find($id);
-            foreach (Role::all()->where('name', '!=', 'super-admin')->where('name', '!=', 'user') as $item) {
-                $usr->removeRole($item->name);
-            }
-            foreach ($request->role as $item) {
-                $usr->assignRole($item);
-            }
+            // foreach (Role::all()->where('name', '!=', 'super-admin')->where('name', '!=', 'user') as $item) {
+            //     $usr->removeRole($item->name);
+            // }
+            // foreach ($request->role as $item) {
+            //     $usr->assignRole($item);
+            // }
 
             $data_user['status'] = $request->status;
             if($request->password){

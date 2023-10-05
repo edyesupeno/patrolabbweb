@@ -23,34 +23,34 @@
 
                     <div class="col">
                         <div class="mb-3">
-                            <label for="no_badge" class="form-label">Nomor Badge <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control @error('no_badge') is-invalid @enderror" name="no_badge" id="no_badge" placeholder="Masukkan Nomor Badge" value="{{ old('no_badge') }}">
-                            @error('no_badge')
+                            <label for="badge_number" class="form-label">Nomor Badge <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('badge_number') is-invalid @enderror" name="badge_number" id="badge_number" placeholder="Masukkan Nomor Badge" value="{{ old('badge_number') }}">
+                            @error('badge_number')
                             <span class="text-danger d-block">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama" placeholder="Masukkan Nama" value="{{ old('nama') }}">
-                            @error('nama')
+                            <label for="name" class="form-label">Nama <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Masukkan Nama" value="{{ old('name') }}">
+                            @error('name')
                             <span class="text-danger d-block">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="ttl" class="form-label">Tempat Tanggal Lahir <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control @error('ttl') is-invalid @enderror" name="ttl" id="ttl" placeholder="Masukkan Tempat Tanggal Lahir" value="{{ old('ttl') }}">
-                            @error('ttl')
+                            <label for="dob" class="form-label">Tempat Tanggal Lahir <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control @error('dob') is-invalid @enderror" name="dob" id="dob" placeholder="Masukkan Tempat Tanggal Lahir" value="{{ old('dob') }}">
+                            @error('dob')
                             <span class="text-danger d-block">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="jenis_kelamin" class="form-label">Jenis Kelamin <span class="text-danger">*</span></label>
-                            <select class="form-select @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" id="jenis_kelamin">
+                            <label for="gender" class="form-label">Jenis Kelamin <span class="text-danger">*</span></label>
+                            <select class="form-select @error('gender') is-invalid @enderror" name="gender" id="myselect1">
                                 <option value="" selected disabled>--Pilih--</option>
-                                <option value="laki laki" {{ old('jenis_kelamin') == 'laki laki' ? 'selected' : '' }}>Laki Laki</option>
-                                <option value="perempuan" {{ old('jenis_kelamin') == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                <option value="MALE" {{ old('gender') == 'MALE' ? 'selected' : '' }}>Laki Laki</option>
+                                <option value="FEMALE" {{ old('gender') == 'FEMALE' ? 'selected' : '' }}>Perempuan</option>
                             </select>
-                            @error('jenis_kelamin')
+                            @error('gender')
                             <span class="text-danger d-block">{{ $message }}</span>
                             @enderror
                         </div>
@@ -72,42 +72,42 @@
 
                     <div class="col">
                         <div class="mb-3">
-                            <label for="alamat" class="form-label">Alamat <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" id="alamat" placeholder="Masukkan Alamat" value="{{ old('alamat') }}">
-                            @error('alamat')
+                            <label for="address" class="form-label">Alamat <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" id="address" placeholder="Masukkan Alamat" value="{{ old('address') }}">
+                            @error('address')
                             <span class="text-danger d-block">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="id_wilayah" class="form-label">Wilayah <span class="text-danger">*</span></label>
-                            <select class="form-select @error('id_wilayah') is-invalid @enderror" name="id_wilayah" onchange="get_project(this.value)" id="myselect0">
-                                <option value="" selected disabled>--Pilih--</option>
-                                @foreach ($wilayah as $item)
-                                <option value="{{ $item->id }}" {{ old('id_wilayah') == $item->id ? 'selected' : '' }}>{{ $item->nama }}
-                                </option>
-                                @endforeach
-                            </select>
-                            @error('id_wilayah')
+                            <label for="img_avatar" class="form-label">Img Avatar <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('img_avatar') is-invalid @enderror" name="img_avatar" id="img_avatar" placeholder="Masukkan Alamat" value="{{ old('img_avatar') }}">
+                            @error('img_avatar')
                             <span class="text-danger d-block">{{ $message }}</span>
                             @enderror
                         </div>
-                        <label for="id_project" class="form-label">Project <span class="text-danger">*</span></label>
-                        <div class="row row-cols-1 row-cols-lg-3 mb-2" id="data_roject">
-                        </div>
-                        @error('id_project')
-                        <span class="text-danger d-block">{{ $message }}</span>
-                        @enderror
-
                         <div class="mb-3">
-                            <label for="id_area" class="form-label">Area <span class="text-danger">*</span></label>
-                            <select class="form-select @error('id_area') is-invalid @enderror" name="id_area" id="myselect1">
+                            <label for="pleton_id" class="form-label">Pleton <span class="text-danger">*</span></label>
+                            <select class="form-select @error('pleton_id') is-invalid @enderror" name="pleton_id" id="myselect1">
                                 <option value="" selected disabled>--Pilih--</option>
-                                @foreach ($area as $item)
-                                <option value="{{ $item->id }}" {{ old('id_area') == $item->id ? 'selected' : '' }}>{{ $item->nama }}
+                                @foreach ($pleton as $item)
+                                <option value="{{ $item->id }}" {{ old('pleton_id') == $item->id ? 'selected' : '' }}>{{ $item->name }}
                                 </option>
                                 @endforeach
                             </select>
-                            @error('id_area')
+                            @error('pleton_id')
+                            <span class="text-danger d-block">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="shift_id" class="form-label">Shift <span class="text-danger">*</span></label>
+                            <select class="form-select @error('shift_id') is-invalid @enderror" name="shift_id" id="myselect1">
+                                <option value="" selected disabled>--Pilih--</option>
+                                @foreach ($shift as $item)
+                                <option value="{{ $item->id }}" {{ old('shift_id') == $item->id ? 'selected' : '' }}>{{ $item->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('shift_id')
                             <span class="text-danger d-block">{{ $message }}</span>
                             @enderror
                         </div>

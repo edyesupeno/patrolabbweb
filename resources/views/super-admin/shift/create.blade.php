@@ -10,7 +10,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"> <i data-feather="home"></i></a>
                     </li>
-                    <li class="breadcrumb-item">Wilayah</li>
+                    <li class="breadcrumb-item">shift</li>
                     <li class="breadcrumb-item">{{ $title }}</li>
                 </ol>
             </div>
@@ -33,25 +33,25 @@
 
                             <div class="col">
                                 <div class="mb-3">
-                                    <label for="nama" class="form-label">Nama Shift <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama" placeholder="Masukkan Nama Shift" value="{{ old('nama') }}">
-                                    @error('nama')<span class="text-danger d-block">{{ $message }}</span>@enderror
+                                    <label for="name" class="form-label">Nama Shift <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Masukkan Nama Shift" value="{{ old('name') }}">
+                                    @error('name')<span class="text-danger d-block">{{ $message }}</span>@enderror
                                 </div>
                             </div>
 
                             <div class="col">
                                 <div class="mb-3">
-                                    <label for="mulai" class="form-label">Mulai <span class="text-danger">*</span></label>
-                                    <input type="time" class="form-control @error('mulai') is-invalid @enderror" name="mulai" id="mulai" placeholder="Masukkan Mulai" value="{{ old('mulai') }}">
-                                    @error('mulai')<span class="text-danger d-block">{{ $message }}</span>@enderror
+                                    <label for="start_time" class="form-label">Mulai <span class="text-danger">*</span></label>
+                                    <input type="time" class="form-control @error('start_time') is-invalid @enderror" name="start_time" id="start_time" placeholder="Masukkan Mulai" value="{{ old('start_time') }}">
+                                    @error('start_time')<span class="text-danger d-block">{{ $message }}</span>@enderror
                                 </div>
                             </div>
 
                             <div class="col">
                                 <div class="mb-3">
-                                    <label for="selesai" class="form-label">Selesai <span class="text-danger">*</span></label>
-                                    <input type="time" class="form-control @error('selesai') is-invalid @enderror" name="selesai" id="selesai" placeholder="Masukkan Selesai" value="{{ old('selesai') }}">
-                                    @error('selesai')<span class="text-danger d-block">{{ $message }}</span>@enderror
+                                    <label for="end_time" class="form-label">Selesai <span class="text-danger">*</span></label>
+                                    <input type="time" class="form-control @error('end_time') is-invalid @enderror" name="end_time" id="end_time" placeholder="Masukkan Selesai" value="{{ old('end_time') }}">
+                                    @error('end_time')<span class="text-danger d-block">{{ $message }}</span>@enderror
                                 </div>
                             </div>
 
