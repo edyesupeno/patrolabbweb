@@ -33,28 +33,9 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="guard_id" class="form-label">Guard <span class="text-danger">*</span></label>
-                                <h3 class="d-block">{{ $user->data_guard->nama }}</h3>
+                                <h3 class="d-block">{{ $user->data_guard->name }}</h3>
                             </div>
-                            <div class="mb-3">
-                                <label for="role" class="form-label">Pilih Hak Akses <span
-                                        class="text-danger">*</span></label>
-                                        <div class="row row-cols-1 row-cols-lg-3">
-                                            @foreach ($role as $item)
-                                                <div class="col">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="{{ $item->name }}"
-                                                            name="role[]" {{ $user->getRoleNames()->contains($item->name) ? 'checked' : '' }}>
-                                                        <label class="form-check-label" for="">
-                                                            {{ $item->name }}
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                @error('role')
-                                    <span class="text-danger d-block">{{ $message }}</span>
-                                @enderror
-                            </div>
+                            
 
                             <div class="mb-3">
                                 <label for="password" class="form-label">Ganti Password <span class="text-danger">*</span></label>
@@ -69,8 +50,8 @@
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
                                 <select class="form-select @error('status') is-invalid @enderror" name="status" id="status">
-                                    <option value="aktif" {{ old('status') == 'aktif' || $user->status == 'aktif' ? 'selected' : '' }}>Aktif</option>
-                                    <option value="tidak aktif" {{ old('status') == 'tidak aktif' || $user->status == 'tidak aktif' ? 'selected' : '' }}>Tidak Aktif</option>
+                                    <option value="ACTIVED" {{ old('status') == 'ACTIVED' || $user->status == 'ACTIVED' ? 'selected' : '' }}>Aktif</option>
+                                    <option value="INACTIVED" {{ old('status') == 'INACTIVED' || $user->status == 'INACTIVED' ? 'selected' : '' }}>Tidak Aktif</option>
                                 </select>
                                 @error('status')<span class="text-danger d-block">{{ $message }}</span>@enderror
                             </div>

@@ -29,6 +29,7 @@
                         <th class="text-nowrap" style="max-width: 40px;">No</th>
                         <th class="text-nowrap">Kode Area</th>
                         <th class="text-nowrap">Nama Area</th>
+                        <th class="text-nowrap">Lokasi Image</th>
                         <th class="text-nowrap">Nama Project</th>
                     </tr>
                 </thead>
@@ -49,15 +50,19 @@
                 name: 'No'
             },
             {
-                data: 'kode',
+                data: 'code',
                 name: 'Kode area'
             },
             {
-                data: 'nama',
+                data: 'name',
                 name: 'Nama area'
             },
             {
-                data: 'project',
+                data: 'img_location',
+                name: 'Lokasi Image'
+            },
+            {
+                data: 'project_id',
                 name: 'Nama Project'
             }
         ]
