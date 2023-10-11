@@ -86,30 +86,11 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="pleton_id" class="form-label">Pleton <span class="text-danger">*</span></label>
-                            <select class="form-select @error('pleton_id') is-invalid @enderror" name="pleton_id" id="myselect1">
-                                <option value="" selected disabled>--Pilih--</option>
-                                @foreach ($pleton as $item)
-                                <option value="{{ $item->id }}" {{ old('pleton_id') == $item->id ? 'selected' : '' }}>{{ $item->name }}
-                                </option>
-                                @endforeach
-                            </select>
-                            @error('pleton_id')
-                            <span class="text-danger d-block">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="shift_id" class="form-label">Shift <span class="text-danger">*</span></label>
-                            <select class="form-select @error('shift_id') is-invalid @enderror" name="shift_id" id="myselect1">
-                                <option value="" selected disabled>--Pilih--</option>
-                                @foreach ($shift as $item)
-                                <option value="{{ $item->id }}" {{ old('shift_id') == $item->id ? 'selected' : '' }}>{{ $item->name }}
-                                </option>
-                                @endforeach
-                            </select>
-                            @error('shift_id')
-                            <span class="text-danger d-block">{{ $message }}</span>
-                            @enderror
+                            <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Masukkan Password" value="{{ old('password') }}">
+                                @error('password')
+                                    <span class="text-danger d-block">{{ $message }}</span>
+                                @enderror
                         </div>
                     </div>
 

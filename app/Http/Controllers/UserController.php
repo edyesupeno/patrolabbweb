@@ -200,13 +200,6 @@ class UserController extends Controller
                 return date('d M y', strtotime($user->created_at));
             })
             ->addColumn('status', '{{$status}}')
-            ->addColumn('action', function (User $user) {
-                $data = [
-                    'editurl' => route('user.edit', $user->id),
-                    'deleteurl' => route('user.destroy', $user->id)
-                ];
-                return $data;
-            })
             ->toJson();
     }
 }

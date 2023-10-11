@@ -5,7 +5,7 @@
 {{ $title }}
 @endslot
 @slot('bread')
-<li class="breadcrumb-item">Guard Management</li>
+<li class="breadcrumb-item">Pleton Management</li>
 <li class="breadcrumb-item">{{ $title }}</li>
 @endslot
 @endcomponent
@@ -14,16 +14,15 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex mb-3 justify-content-end">
-                <a href="{{ route('guard.create') }}" class="btn btn-success">Tambah Guard</a>
+                <a href="{{ route('guard.create') }}" class="btn btn-success">Tambah Pleton</a>
             </div>
             <table id="mytable" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th style="max-width: 40px;">No</th>
-                        <th class="text-nowrap">No Badge</th>
-                        <th class="text-nowrap">Nama</th>
-                        <th class="text-nowrap">Email</th>
-                        <th class="text-nowrap">Created At</th>
+                        <th class="text-nowrap">Nama Pleton</th>
+                        <th class="text-nowrap">Kode Pleton</th>
+                        <th class="text-nowrap">Jumlah Member</th>
                         <!-- <th class="text-nowrap">Aksi</th> -->
                     </tr>
                 </thead>
@@ -50,27 +49,27 @@
         scrollX: true,
         processing: true,
         serverSide: true,
-        ajax: "{{ route('guard.datatable') }}",
+        ajax: "{{ route('pleton.datatable') }}",
         columns: [{
                 data: 'DT_RowIndex',
                 name: 'No'
             },
             {
-                data: 'no_badge',
-                name: 'no_badge'
+                data: 'name',
+                name: 'name'
             },
             {
-                data: 'nama',
-                name: 'nama'
+                data: 'code',
+                name: 'code'
             },
             {
-                data: 'email',
-                name: 'email'
+                data: 'guards_count',
+                name: 'guards_count'
             },
-            {
-                data: 'created_at',
-                name: 'created_at'
-            },
+            // {
+            //     data: 'created_at',
+            //     name: 'created_at'
+            // },
             // {
             //     name: "Action",
             //     render: function(data, type, row) {

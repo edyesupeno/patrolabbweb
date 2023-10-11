@@ -157,9 +157,8 @@
                                 </li>
                                 <li class="sidebar-list" id="menu-guard"><a class="sidebar-link sidebar-title" href="#"><i data-feather="layers"></i><span>Guard Management</span></a>
                                     <ul class="sidebar-submenu">
-                                        <li><a href="{{ route('guard.create') }}" id="sub-add-guard">Add Guard</a></li>
                                         <li><a href="{{ route('guard.index') }}" id="sub-list-guard">Guard List</a></li>
-                                        <li><a href="">Squad List</a></li>
+                                        <li><a href="{{ route('pleton.index') }}">Pleton List</a></li>
                                     </ul>
                                 </li>
                                 <li class="sidebar-list" id="menu-checkpoint"><a class="sidebar-link sidebar-title" href="#"><i data-feather="map-pin"></i><span>Check Point</span></a>
