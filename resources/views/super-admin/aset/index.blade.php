@@ -29,6 +29,7 @@
                         <th style="max-width: 40px;">No</th>
                         <th>Kode</th>
                         <th>Nama</th>
+                        <th>Jenis Aset</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -67,8 +68,18 @@
                 name: 'nama'
             },
             {
+                data: 'asset_master_type',
+                name: 'jenis_asset'
+            },
+            {
                 data: 'status',
-                name: 'status'
+                render: function(data, type, row) {
+                    if (row.status == 'ACTIVED') {
+                        return '<span class="badge badge-success">' + row.status + '</span>'
+                    } else {
+                        return '<span class="badge badge-danger">' + row.status + '</span>'
+                    }
+                }
             },
             {
                 name: "Action",
