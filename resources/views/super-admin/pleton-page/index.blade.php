@@ -14,7 +14,7 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex mb-3 justify-content-end">
-                <a href="{{ route('guard.create') }}" class="btn btn-success">Tambah Pleton</a>
+                <a href="{{ route('pleton.create') }}" class="btn btn-success">Tambah Pleton</a>
             </div>
             <table id="mytable" class="display" style="width:100%">
                 <thead>

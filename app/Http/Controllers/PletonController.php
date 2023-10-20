@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Throwable;
-use App\Models\Guard;
+// use App\Models\Guard;
 use App\Models\Pleton;
+use App\Models\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -34,7 +35,13 @@ class PletonController extends Controller
      */
     public function create()
     {
-        //
+        // dd("hahahahaha");
+        $data['title'] = 'Tambah Pleton';
+        $data['pletons'] = Pleton::all();
+        // $data['guards'] = Guard::all();
+        $data['guards'] = Guard::whereNull('pleton_id')->get();
+        // dd($data);
+        return view('super-admin.pleton-page.create',$data);
     }
 
     /**
@@ -45,7 +52,31 @@ class PletonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $validator = Validator::make($request->all(), [
+                'id_pleton' => 'required',
+                'id_guard'=>'required'
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator->errors())->withInput($request->all());
+            }
+            $validator->validated();
+
+            $guard = Guard::find($request->id_guard);
+            // dd($guard);
+
+            $data['pleton_id'] = $request->id_pleton;
+            // dd($data);
+            $guard->update($data);
+            DB::commit();
+            return redirect()->route('pleton.index')->with('success', 'Data Berhasil Ditambah');
+        } catch (Throwable $e) {
+            DB::rollback();
+            Log::debug('PletonController update() ' . $e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     /**
