@@ -94,6 +94,7 @@ class AsetController extends Controller
             ->escapeColumns('active')
             ->addColumn('kode', '{{$code}}')
             ->addColumn('nama', '{{$name}}')
+            ->addColumn('jenis_asset', '{{$asset_master_type}}')
             ->addColumn('status', '{{$status}}')
             ->addColumn('action', function (Aset $aset) {
                 $data = [

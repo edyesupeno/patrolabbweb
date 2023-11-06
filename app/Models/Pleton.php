@@ -10,4 +10,9 @@ class Pleton extends Model
     use HasFactory;
     protected $guarded = ['id'];
     protected $table = 'pleton';
+
+    public function guards()
+    {
+        return $this->hasMany(Guard::class, 'pleton_id', 'id');
+    }
 }

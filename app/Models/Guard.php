@@ -17,9 +17,15 @@ class Guard extends Model
     public function shift(){
         return $this->belongsTo(Shift::class,'shift_id');
     }
-    public function pleton(){
-        return $this->belongsTo(Pleton::class,'pleton_id');
+    // public function pleton(){
+    //     return $this->belongsTo(Pleton::class,'pleton_id');
+    // }
+
+    public function pleton()
+    {
+        return $this->belongsTo(Pleton::class, 'pleton_id', 'id');
     }
+    
     public function projects()
     {
         return $this->belongsToMany(ProjectModel::class,'pivot_guard_projects','id_guard','id_project');

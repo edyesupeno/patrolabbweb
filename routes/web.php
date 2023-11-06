@@ -6,6 +6,7 @@ use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AsetController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GuardController;
+use App\Http\Controllers\PletonController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\RoundController;
 use App\Http\Controllers\ShiftController;
@@ -57,6 +58,7 @@ Route::group(['prefix' => 'super-admin', 'middleware' => ['auth', 'verified', 'r
         'area' => AreaController::class,
         'check-point' => CheckPointController::class,
         'guard' => GuardController::class,
+        'pleton' => PletonController::class,
         'ai-master' => AiMasterDataController::class,
         'aset' => AsetController::class,
         'hak-akses' => HakAksesController::class,
@@ -102,6 +104,9 @@ Route::group(['prefix' => 'super-admin', 'middleware' => ['auth', 'verified', 'r
 
     //Guard
     Route::get('guard-datatable', [GuardController::class, 'datatable'])->name('guard.datatable');
+
+     //Pleton
+     Route::get('pleton-datatable', [PletonController::class, 'datatable'])->name('pleton.datatable');
 
     //Audit Log
     Route::get('audit-log-datatable', [AuditLogController::class, 'datatable'])->name('audit-log.datatable');

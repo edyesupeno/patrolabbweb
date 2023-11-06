@@ -14,32 +14,21 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex mb-3 justify-content-end">
-                <a href="{{route('user.create')}}" class="btn btn-success">Tambah User</a>
+                <!-- <a href="{{route('user.create')}}" class="btn btn-success">Tambah User</a> -->
             </div>
             <table id="mytable" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th style="max-width: 40px;">No</th>
-                        <th>User</th>
-                        <th>Username</th>
+                        <th>Name</th>
+                        <th>No Badge</th>
                         <th>Akses Level</th>
                         <th>Created At</th>
                         <th>Status</th>
-                        <th style="width: 200px">Aksi</th>
                     </tr>
                 </thead>
             </table>
         </div>
-    </div>
-</div>
-<div id="actionbase" class="d-none">
-    <div class="d-flex">
-        <a class="btn btn-warning me-2">Edit</a>
-        <form method="post" class="d-inline">
-            @csrf
-            @method('delete')
-            <button onclick="hapus_data(event)" class="btn btn-danger me-2" type="button">Hapus</button>
-        </form>
     </div>
 </div>
 <!-- Container-fluid Ends-->
@@ -55,11 +44,11 @@
             },
             {
                 data: 'name',
-                name: 'user'
+                name: 'name'
             },
             {
                 data: 'no_badge',
-                name: 'username'
+                name: 'no_badge'
             },
             {
                 data: 'role',
@@ -79,18 +68,6 @@
                     } else {
                         return '<span class="badge badge-danger">' + row.status + '</span>'
                     }
-                }
-            },
-            {
-                name: "Action",
-                render: function(data, type, row) {
-                    let html = $('#actionbase').clone()
-                    html = html.find('.d-flex')
-                    html.find('a').attr('href', row.action.editurl)
-                    let form = html.find('form').attr('action', row.action.deleteurl)
-                        .attr('id', 'delete_form' + row.id)
-                    form.find('button').attr('form-id', '#delete_form' + row.id)
-                    return html.html()
                 }
             }
         ]

@@ -43,12 +43,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Guard::class, 'guard_id');
     }
-    protected $with = [
-        'data_guard',
-        'data_guard.wilayah',
-        'data_guard.projects',
-        'data_guard.area'
-    ];
+    // protected $with = [
+    //     'data_guard',
+    //     'data_guard.wilayah',
+    //     'data_guard.projects',
+    //     'data_guard.area'
+    // ];
 
     public function atensis()
     {

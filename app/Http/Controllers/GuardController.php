@@ -6,6 +6,7 @@ use App\Models\PivotGuardProject;
 use Throwable;
 use App\Models\Shift;
 use App\Models\Guard;
+use App\Models\User;
 use App\Models\Pleton;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -59,8 +60,7 @@ class GuardController extends Controller
                 'address'=>'required|string',
                 'img_avatar'=>'required',
                 'wa'=>'required|numeric',
-                'pleton_id'=>'required|numeric',
-                'shift_id'=>'required|numeric',
+                'password'=>'required',
             ]);
 
             if($validator->fails()){
@@ -69,12 +69,17 @@ class GuardController extends Controller
             $data = $validator->validated();
 
             $guard = Guard::create($data);
-            // foreach($request->id_project as $item){
-            //     PivotGuardProject::create([
-            //         'id_guard'=>$guard->id,
-            //         'id_project'=>$item
-            //     ]);
-            // }
+            $data_user = [
+                'guard_id' => $guard->id,
+                'name' => $guard->name,
+                'no_badge' => $guard->badge_number,
+                'email' => $guard->email,
+                'password' => bcrypt($request->password),
+                'status'=>'ACTIVED',
+            ];
+            $usr = User::create($data_user);
+            $usr->assignRole('user');
+
             DB::commit();
             return redirect()->route('guard.index')->with('success', 'Data Berhasil Ditambahkan');
         } catch (Throwable $e) {
@@ -145,14 +150,14 @@ class GuardController extends Controller
             ->addColumn('created_at', function (Guard $guard) {
                 return date('d M y', strtotime($guard->created_at));
             })
-            ->addColumn('action', function (Guard $guard) {
-                $data = [
-                    'showurl' => route('guard.show', $guard->id),
-                    'editurl' => route('guard.edit', $guard->id),
-                    'deleteurl' => route('guard.destroy', $guard->id)
-                ];
-                return $data;
-            })
+            // ->addColumn('action', function (Guard $guard) {
+            //     $data = [
+            //         'showurl' => route('guard.show', $guard->id),
+            //         'editurl' => route('guard.edit', $guard->id),
+            //         'deleteurl' => route('guard.destroy', $guard->id)
+            //     ];
+            //     return $data;
+            // })
             ->toJson();
     }
 }
